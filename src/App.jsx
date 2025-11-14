@@ -1,7 +1,8 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useParams } from "react-router-dom";
 import StackCarousel from "./components/StackCarousel";
 import ProjectPage from "./pages/ProjectPage";
+import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import projects from "./data/projects";
 
 /* Project Card */
@@ -76,16 +77,25 @@ function Home() {
         <h2 className="text-3xl md:text-4xl font-bold mb-1 text-left">My Work</h2>
         <p className="italic text-gray-500 mb-8 text-left">(what you’re probably here for)</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((p) => (
+          {/* Puzzle project card */}
+          {projects[0] && (
             <ProjectCard
-              key={p.slug}
-              title={p.title}
-              company={p.company}
-              year={p.year}
-              image={p.image}
-              slug={p.slug}
+              key={projects[0].slug}
+              title={projects[0].title}
+              company={projects[0].company}
+              year={projects[0].year}
+              image={projects[0].image}
+              slug={projects[0].slug}
             />
-          ))}
+          )}
+          {/* New Infinite Possibilities project card */}
+          <ProjectCard
+            title="Agentic AI Workflows for Private Equity Teams"
+            company="Infinite Possibilities"
+            year="2025"
+            image={null}
+            slug="agentic-ai-private-equity"
+          />
         </div>
       </section>
 
@@ -131,12 +141,22 @@ function Home() {
   );
 }
 
+function ProjectRouteHandler() {
+  const { slug } = useParams();
+
+  if (slug === "agentic-ai-private-equity") {
+    return <AgenticAIProjectPage />;
+  }
+  // Default: puzzle project
+  return <ProjectPage />;
+}
+
 /* Routes */
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/projects/:slug" element={<ProjectPage />} />
+      <Route path="/projects/:slug" element={<ProjectRouteHandler />} />
       <Route
         path="*"
         element={
