@@ -4,6 +4,8 @@ import StackCarousel from "./components/StackCarousel";
 import ProjectPage from "./pages/ProjectPage";
 import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import projects from "./data/projects";
+import Button from "./components/Button"; // adjust path if needed
+import { HiOutlineDocumentArrowDown } from "react-icons/hi2"; // Add this import
 
 /* Project Card */
 function ProjectCard({ title, company, year, image, slug }) {
@@ -56,13 +58,16 @@ function Home() {
   return (
     <div className="relative">
       {/* Floating resume button */}
-      <a
-        href="public/Resume.pdf"
+      <Button
+        href="/Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
         download
-        className="resume-fallback fixed top-4 right-4 text-sm font-semibold rounded-full shadow-md hover:shadow-lg transition hover:-translate-y-0.5"
+        className="fixed top-8 right-8 flex items-center gap-2"
       >
+        <HiOutlineDocumentArrowDown className="text-xl" />
         Resume
-      </a>
+      </Button>
 
       {/* Hero */}
       <section className="home flex flex-col items-center justify-center min-h-screen">

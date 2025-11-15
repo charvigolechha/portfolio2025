@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdSportsEsports, MdPsychology, MdLeaderboard, MdTimeline, MdRecordVoiceOver, MdCalendarToday, MdGroups, MdFavorite, MdTrendingUp, MdSchool, MdVisibility } from "react-icons/md";
+import Button from "../components/Button";
 
 export default function ProjectPage() {
   return (
@@ -551,9 +552,9 @@ export default function ProjectPage() {
           <p className="text-lg text-gray-800">
             I transformed Jigsaw Puzzle Explorer’s progression model by turning moment-to-moment play into a system of visible growth and intrinsic motivation—driving measurable improvements in engagement, retention, and player confidence.
           </p>
-          <Link to="/" className="inline-block mt-10 px-6 py-3 bg-black text-white rounded-full font-semibold shadow hover:bg-gray-900 transition">
+          <Button as={Link} to="/" className="mt-10">
             ← Back to Home
-          </Link>
+          </Button>
         </div>
       </section>
 
