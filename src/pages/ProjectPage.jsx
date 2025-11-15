@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MdSportsEsports, MdPsychology, MdLeaderboard, MdTimeline, MdRecordVoiceOver, MdCalendarToday, MdGroups, MdFavorite, MdTrendingUp, MdSchool, MdVisibility } from "react-icons/md";
 
 export default function ProjectPage() {
   return (
     <div className="project-case-study bg-white text-black">
       {/* Top Back Button */}
-      <div className="w-full max-w-5xl mx-auto pt-8 px-4 md:px-0 flex">
+      <div className="w-full max-w-5xl mx-auto pt-8 px-4 md:px-0">
         <Link
           to="/"
           className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 font-semibold shadow transition mb-8"
@@ -15,136 +16,179 @@ export default function ProjectPage() {
         </Link>
       </div>
 
-      {/* 00 — Hero Section */}
-      <section className="hero-section py-20 px-4 md:px-0 border-b border-gray-200 flex flex-col items-center">
-        <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10">
-          <div className="flex-1 flex flex-col items-center md:items-start">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center md:text-left">
-              Jigsaw Puzzle Explorer: Player Progression & Motivation
-            </h1>
-            <h2 className="text-xl md:text-2xl font-medium mb-6 text-center md:text-left">
-              A data-informed UX case study
-            </h2>
-            <ul className="mb-6 text-base md:text-lg text-gray-700 space-y-1">
-              <li>
-                <span className="font-semibold">Role:</span> UX Designer
-              </li>
-              <li>
-                <span className="font-semibold">Timeline:</span> July–Sept 2025
-              </li>
-              <li>
-                <span className="font-semibold">Team:</span> UX, Product, Game Design, Analysts, UI, Developers
-              </li>
-            </ul>
-            <div className="flex flex-wrap gap-4 mb-4">
-              <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">D7/D1 Retention ↑</span>
-              <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Session Time ↑</span>
-              <span className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">Higher Grid Starts ↑</span>
-              <span className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">Puzzle Completion Rates ↑</span>
-            </div>
+      {/* Hero Section */}
+      <section className="hero-section py-16 px-4 md:px-0 border-b border-gray-200">
+        <div className="w-full max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-left">
+            Driving Player Progression in Casual Puzzle Games
+          </h1>
+          <h2 className="text-xl md:text-2xl font-normal mb-6 text-left text-gray-800">
+            A data-informed UX case study
+          </h2>
+          <div className="flex flex-wrap gap-3 mb-6">
+            {/* Company logo placeholder */}
+            <span className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+              <span className="w-5 h-5 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold">PG</span>
+              Playsimple Games
+            </span>
+            <span className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+              <MdCalendarToday className="text-base align-middle" />
+              July - Sept 2025
+            </span>
+            <span className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+              <MdGroups className="text-base align-middle" />
+              UX, Product, Game Design, Analysts, UI, Developers
+            </span>
           </div>
-          <div className="flex-1 flex justify-center items-center">
-            {/* HERO VISUAL */}
-            <div className="w-full max-w-md h-56 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300">
-              {/* VISUAL HERE: Full-width banner–Jigsaw Puzzle Explorer UI + progression arrows + tokens flowing from puzzle pieces → leaderboard */}
+          <div className="w-full">
+            <div className="w-full h-64 md:h-72 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-4">
+              {/* HERO VISUAL HERE */}
               <span className="text-gray-400 text-lg">[HERO VISUAL HERE]</span>
             </div>
           </div>
+          <div className="flex flex-wrap gap-3 mb-6">
+            <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">D7/D1 Retention ↑</span>
+            <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">Session Time ↑</span>
+            <span className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">Higher Grid Starts ↑</span>
+            <span className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">Puzzle Completion Rates ↑</span>
+          </div>
+          <div className="w-full">
+            <p className="mt-2 text-lg text-gray-800">
+              I helped improve retention and engagement for <span className="font-semibold">Jigsaw Puzzles</span> by identifying why players stalled early, pinpointing the psychological blockers behind low progression, and designing a motivation-driven reward system that encourages natural learning and long-term play.
+            </p>
+          </div>
         </div>
-        <p className="mt-10 max-w-3xl text-lg text-center text-gray-800">
-          I helped PSGs’ Jigsaw improve retention and engagement by identifying why players stalled early, identifying the psychological blockers behind low progression, and designing a motivation-driven reward system that encourages natural learning and long-term play.
-        </p>
       </section>
 
       {/* 01 — Context + Business Goal */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">01 — Context + Business Goal</h2>
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="flex-1">
-              <h3 className="text-xl font-semibold mb-2">About Jigsaw Puzzle Explorer</h3>
-              <div className="w-full h-40 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-4">
-                {/* VISUAL HERE: Game screenshots / Core gameplay grid / App Store card */}
-                <span className="text-gray-400">[VISUAL HERE]</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-left">01 — Context + Business Goal</h2>
+          {/* Top half: About Jigsaw + features */}
+          <div className="flex flex-row gap-6 mb-6">
+            {/* Game logo */}
+            <div className="flex-shrink-0">
+              <div className="relative w-32 h-32 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
+                {/* Replace with actual logo if available */}
+                <img
+                  src="/images/jigsaw-app-icon.png"
+                  alt="Jigsaw Puzzle Explorer Logo"
+                  className="w-full h-full object-cover"
+                  style={{ display: "block" }}
+                  onError={e => { e.target.style.display = "none"; }}
+                />
+                <span className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">2025</span>
               </div>
-              <p className="mb-2">
-                PSGs’ Jigsaw rapidly rose from outside the top 25 to fighting for the #3 global spot in the Jigsaw space in terms of revenue share, powered by PlaySimple’s deeply analytical approach to game design.
-              </p>
-              <ul className="list-disc ml-6 mb-2 text-gray-700">
-                <li>6 grid sizes (36–200 pieces)</li>
-                <li>13 categories, 12k+ puzzles</li>
-                <li>2 metas (Adventure, Stories)</li>
-                <li>4 in-game power-up</li>
-              </ul>
             </div>
+            {/* About Jigsaw + features */}
+            <div className="flex-1 flex flex-col justify-center">
+              <h3 className="text-xl font-bold mb-2 text-left">About Jigsaw Puzzle Explorer</h3>
+              <p className="text-gray-800 text-base mb-3 text-left">
+                PSGs’ Jigsaw rapidly rose from outside the top 25 to <span className="font-bold">fighting for #3 global spot</span> in the Jigsaw space in terms of revenue share, powered by PlaySimple’s deeply analytical approach to game design.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">6 grid sizes (36–200 pieces)</span>
+                <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">13 categories, 12k+ puzzles</span>
+                <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">2 metas (Adventure, Stories)</span>
+                <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">6 in-game power-ups</span>
+              </div>
+            </div>
+          </div>
+          {/* Bottom half: Who we build for & Business Goal */}
+          <div className="flex flex-col md:flex-row gap-6 mt-8">
             <div className="flex-1">
-              <h3 className="text-xl font-semibold mb-2">Who we design for</h3>
-              <ul className="list-disc ml-6 mb-2 text-gray-700">
-                <li>Casual players 35–60, primarily women</li>
-                <li>Based majorly in US, UK, Canada, Australia</li>
-                <li>Motivated by relaxation, aesthetics, low-pressure play</li>
+              <h4 className="font-bold mb-1 text-left">Who we build for</h4>
+              <ul className="list-disc ml-5 text-gray-700 text-base mb-2">
+                <li>Casual players</li>
+                <li>35–60 year old, 66% women</li>
+                <li>Based in US, UK, Canada, Australia</li>
+                <li>Motivated by relaxation and aesthetics</li>
+                <li>Prefer low-pressure play</li>
               </ul>
-              <h3 className="text-xl font-semibold mt-6 mb-2">Business Goal</h3>
-              <p>
-                Strengthen the game’s core health metrics (retention, engagement, and LTV) by reducing early friction and motivating players to transition into deeper, more rewarding gameplay loops.
-              </p>
+            </div>
+            <div className="flex-1 flex items-stretch">
+              <div className="bg-purple-50 border border-purple-200 rounded-xl p-5 flex items-center w-full">
+                <div>
+                  <h4 className="font-bold mb-1">Business Goal:</h4>
+                  <p className="text-purple-900 font-medium">
+                    Strengthen the game’s core health metrics (retention, engagement, and LTV) by reducing friction and motivating players to <span className="font-bold">transition into deeper, more rewarding gameplay loops.</span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 02 — Problem Space */}
-      <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">02 — Problem Space</h2>
-          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-6">
-            {/* VISUAL HERE: Funnel drop-offs, grid-size distribution heatmap */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Initial Problem Statement</h3>
-          <p className="mb-4">
-            Identify key moments when players lose momentum, and design interventions to reduce friction and sustain long-term engagement.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <span className="font-bold text-lg">No long-term motivation</span>
-              <p className="text-gray-700">Players didn’t see progress.</p>
+      {/* Problem Space */}
+      <section className="py-20 px-4 md:px-0 bg-gray-50 border-b border-gray-200">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left">02 — Problem Space</h2>
+          <div className="mb-4">
+            <h3 className="font-semibold text-lg mb-1 text-left">Initial Problem Statement</h3>
+            <p className="text-gray-800 mb-6 text-left">
+              Identify key moments when players lose momentum, and design interventions to reduce friction and sustain long-term engagement.
+            </p>
+            <div className="w-full h-48 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-8">
+              {/* VISUAL HERE */}
+              <span className="text-gray-400">[VISUAL HERE]</span>
             </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <span className="font-bold text-lg">No push toward higher grid sizes</span>
-              <p className="text-gray-700">Players stayed “stuck”.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <span className="font-bold text-lg">Intimidation</span>
-              <p className="text-gray-700">Higher puzzles looked harder than they actually were.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <span className="font-bold text-lg">No linear system</span>
-              <p className="text-gray-700">Players lacked a sense of mastery or improvement.</p>
+            {/* Blockers */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl shadow p-6">
+                <h4 className="font-bold text-base mb-1">No linear progression system</h4>
+                <p className="text-gray-700 text-sm">Players lacked a sense of mastery or improvement.</p>
+              </div>
+              <div className="bg-white rounded-xl shadow p-6">
+                <h4 className="font-bold text-base mb-1">Intimidation</h4>
+                <p className="text-gray-700 text-sm">Higher puzzles looked harder than they actually were.</p>
+              </div>
+              <div className="bg-white rounded-xl shadow p-6">
+                <h4 className="font-bold text-base mb-1">No long-term motivation</h4>
+                <p className="text-gray-700 text-sm">Players didn’t see progress.</p>
+              </div>
+              <div className="bg-white rounded-xl shadow p-6">
+                <h4 className="font-bold text-base mb-1">No push toward higher grid sizes</h4>
+                <p className="text-gray-700 text-sm">Players stayed “stuck”.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 03 — Research & Discovery */}
+      {/* Research & Discovery */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">03 — Research & Discovery</h2>
-          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-6">
-            {/* VISUAL HERE: research process diagram */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
+          <div className="mb-6">
+            <h3 className="font-semibold text-lg mb-2 text-left text-gray-900">Methods</h3>
           </div>
-          <ul className="list-disc ml-6 text-gray-700 space-y-1">
-            <li>Gameplay Analysis</li>
-            <li>Behavioral study</li>
-            <li>Competitor benchmarking</li>
-            <li>Funnel and Cohort Analysis</li>
-            <li>User Interviews</li>
-          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-2">
+            <div className="bg-white rounded-xl shadow p-4 flex items-center gap-3">
+              <MdSportsEsports className="text-blue-500 text-2xl" />
+              <span className="font-semibold">Gameplay Analysis</span>
+            </div>
+            <div className="bg-white rounded-xl shadow p-4 flex items-center gap-3">
+              <MdPsychology className="text-green-500 text-2xl" />
+              <span className="font-semibold">Behavioral Study</span>
+            </div>
+            <div className="bg-white rounded-xl shadow p-4 flex items-center gap-3">
+              <MdLeaderboard className="text-purple-500 text-2xl" />
+              <span className="font-semibold">Competitor Benchmarking</span>
+            </div>
+            <div className="bg-white rounded-xl shadow p-4 flex items-center gap-3">
+              <MdTimeline className="text-yellow-500 text-2xl" />
+              <span className="font-semibold">Funnel & Cohort Analysis</span>
+            </div>
+            <div className="bg-white rounded-xl shadow p-4 flex items-center gap-3">
+              <MdRecordVoiceOver className="text-pink-500 text-2xl" />
+              <span className="font-semibold">User Interviews</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 04 — Key Insights */}
+      {/* Key Insights */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">04 — Key Insights</h2>
@@ -153,50 +197,63 @@ export default function ProjectPage() {
             <span className="text-gray-400">[VISUAL HERE]</span>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Insight 1 — Players fell into 3 behavioral types</h3>
-              <ul className="list-disc ml-6 text-gray-700 mb-2">
-                <li>Newbies (6–8 grids)</li>
-                <li>Transition (mix of low + high grids)</li>
-                <li>Pro (10–20 grids)</li>
-              </ul>
-              <p className="text-gray-700">Newbies formed the largest group—but had the weakest engagement.</p>
+            {/* Left column: Insight 1 & 3 */}
+            <div className="flex flex-col gap-8">
+              {/* Insight 1 */}
+              <div className="bg-white rounded-xl shadow p-6">
+                <h3 className="font-semibold text-lg mb-2">Insight 1 — Players fell into 3 behavioral types</h3>
+                <ul className="list-disc ml-6 text-gray-700 mb-2">
+                  <li>Newbies (6–8 grids)</li>
+                  <li>Transition (mix of low + high grids)</li>
+                  <li>Pro (10–20 grids)</li>
+                </ul>
+                <p className="text-gray-700">Newbies formed the largest group—but had the weakest engagement.</p>
+              </div>
+              {/* Insight 3 */}
+              <div className="bg-white rounded-xl shadow p-6">
+                <h3 className="font-semibold text-lg mb-2">Insight 3 — Pro players behave differently</h3>
+                <ul className="list-disc ml-6 text-gray-700 mb-2">
+                  <li>Fix more pieces early</li>
+                  <li>Revisit puzzles more</li>
+                  <li>Complete more sessions</li>
+                  <li>Progress grid sizes consistently</li>
+                </ul>
+                <p className="text-gray-700">These behaviors weren’t surfaced or reinforced for newbies.</p>
+              </div>
             </div>
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Insight 2 — Motivation must be intrinsic</h3>
-              <ul className="list-disc ml-6 text-gray-700 mb-2">
-                <li>Players who come for relaxation avoid pressure-based challenges.</li>
-                <li>They respond best to: instant gratification, effort-based rewards, natural learning</li>
-              </ul>
-            </div>
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Insight 3 — Pro players behave differently</h3>
-              <ul className="list-disc ml-6 text-gray-700 mb-2">
-                <li>Fix more pieces early</li>
-                <li>Revisit puzzles more</li>
-                <li>Complete more sessions</li>
-                <li>Progress grid sizes consistently</li>
-              </ul>
-              <p className="text-gray-700">These behaviors weren’t surfaced or reinforced for newbies.</p>
-            </div>
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Insight 4 — Higher grids are intimidating</h3>
-              <p className="text-gray-700 mb-2">
-                Players hesitate to start bigger puzzles—even when performance data shows they are capable.
-              </p>
-              <h3 className="font-semibold text-lg mb-2 mt-4">Insight 5 — No progression layer exists</h3>
-              <ul className="list-disc ml-6 text-gray-700">
-                <li>Non-linear gameplay = no milestones</li>
-                <li>No sense of leveling</li>
-                <li>No perception of growth</li>
-              </ul>
-              <p className="text-gray-700">Players didn’t feel like they were “getting better”.</p>
+            {/* Right column: Insight 2, 4, 5 */}
+            <div className="flex flex-col gap-8">
+              {/* Insight 2 */}
+              <div className="bg-white rounded-xl shadow p-6">
+                <h3 className="font-semibold text-lg mb-2">Insight 2 — Motivation must be intrinsic</h3>
+                <ul className="list-disc ml-6 text-gray-700 mb-2">
+                  <li>Players who come for relaxation avoid pressure-based challenges.</li>
+                  <li>They respond best to: instant gratification, effort-based rewards, natural learning</li>
+                </ul>
+              </div>
+              {/* Insight 4 */}
+              <div className="bg-white rounded-xl shadow p-6">
+                <h3 className="font-semibold text-lg mb-2">Insight 4 — Higher grids are intimidating</h3>
+                <p className="text-gray-700 mb-2">
+                  Players hesitate to start bigger puzzles—even when performance data shows they are capable.
+                </p>
+              </div>
+              {/* Insight 5 */}
+              <div className="bg-white rounded-xl shadow p-6">
+                <h3 className="font-semibold text-lg mb-2">Insight 5 — No progression layer exists</h3>
+                <ul className="list-disc ml-6 text-gray-700">
+                  <li>Non-linear gameplay = no milestones</li>
+                  <li>No sense of leveling</li>
+                  <li>No perception of growth</li>
+                </ul>
+                <p className="text-gray-700">Players didn’t feel like they were “getting better”.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 05 — Competitor Benchmarking */}
+      {/* Competitor Benchmarking */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">05 — Competitor Benchmarking</h2>
@@ -230,41 +287,53 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* 06 — Opportunity Areas */}
+      {/* Opportunity Areas */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">06 — Opportunity Areas</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Opportunity A</h3>
-              <p>Build intrinsic motivation into the core loop. Reward effort and development, not just completion.</p>
+            <div className="bg-pink-50 border border-pink-200 rounded-xl p-6 flex flex-col items-start">
+              <div className="flex items-center gap-2 mb-2">
+                <MdFavorite className="text-2xl text-pink-500" />
+                <span className="font-bold text-pink-800">Opportunity A</span>
+              </div>
+              <div className="text-gray-700 font-medium mb-1">Build intrinsic motivation into the core loop.</div>
+              <div className="text-gray-600 text-sm">Reward effort and development, not just completion.</div>
             </div>
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Opportunity B</h3>
-              <p>Reduce intimidation of higher-grid puzzles. Make progression feel safe, supported, and achievable.</p>
+            <div className="bg-purple-50 border border-purple-200 rounded-xl p-6 flex flex-col items-start">
+              <div className="flex items-center gap-2 mb-2">
+                <MdVisibility className="text-2xl text-purple-500" />
+                <span className="font-bold text-purple-800">Opportunity B</span>
+              </div>
+              <div className="text-gray-700 font-medium mb-1">Reduce intimidation of higher-grid puzzles.</div>
+              <div className="text-gray-600 text-sm">Make progression feel safe, supported, and achievable.</div>
             </div>
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Opportunity C</h3>
-              <p>Highlight mastery & improvement. Show players how they’re getting better.</p>
+            <div className="bg-green-50 border border-green-200 rounded-xl p-6 flex flex-col items-start">
+              <div className="flex items-center gap-2 mb-2">
+                <MdSchool className="text-2xl text-green-600" />
+                <span className="font-bold text-green-800">Opportunity C</span>
+              </div>
+              <div className="text-gray-700 font-medium mb-1">Highlight mastery & improvement.</div>
+              <div className="text-gray-600 text-sm">Show players how they’re getting better.</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 07 — Concept Direction */}
+      {/* Concept Direction */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">07 — Concept Direction</h2>
           <p className="mb-6">
             We explored systems that could: reward early behavior, normalize higher grid transitions, highlight progress, motivate long-term play
           </p>
-          <ul className="list-disc ml-6 text-gray-700 mb-6">
-            <li>Adaptive difficulty cues</li>
-            <li>Micro-goals inside puzzles</li>
-            <li>Personalized puzzle recommendations</li>
-            <li>Soft nudges toward higher grids</li>
-            <li>Mastery-based milestone rewards</li>
-          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 font-semibold">Adaptive difficulty cues</div>
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4 font-semibold">Micro-goals inside puzzles</div>
+            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 font-semibold">Personalized puzzle recommendations</div>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 font-semibold">Soft nudges toward higher grids</div>
+            <div className="bg-pink-50 border border-pink-200 rounded-xl p-4 font-semibold">Mastery-based milestone rewards</div>
+          </div>
           <div className="p-6 bg-green-50 border-l-4 border-green-400 rounded mb-6">
             <h4 className="font-semibold text-green-800 mb-2">But the concept that best addressed all problem areas was:</h4>
             <p className="text-green-900 text-lg font-bold">→ Token-Based Leaderboard System</p>
@@ -276,7 +345,7 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* 08 — Why Leaderboard? */}
+      {/* Why Leaderboard? */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">08 — Why Leaderboard?</h2>
@@ -310,7 +379,7 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* 09 — Problems → Solutions Framework */}
+      {/* Problems → Solutions Framework */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">09 — Problems → Solutions Framework</h2>
@@ -359,7 +428,7 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* 10 — The Leaderboard MVP (50% Rollout) */}
+      {/* The Leaderboard MVP (50% Rollout) */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">10 — The Leaderboard MVP (50% Rollout)</h2>
@@ -377,7 +446,7 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* 11 — Early Results */}
+      {/* Early Results */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">11 — Early Results</h2>
@@ -385,16 +454,28 @@ export default function ProjectPage() {
             {/* VISUAL HERE: before/after graph or conversion bar chart */}
             <span className="text-gray-400">[VISUAL HERE]</span>
           </div>
-          <ul className="list-disc ml-6 text-gray-700">
-            <li>Session time: +[27 % (44 mins to 56 mins)]</li>
-            <li>Puzzle solve rate: +[5 % (65% to 70%)]</li>
-            <li>Higher grid start ratio: +[2.5% (33% to 35.5%)]</li>
-            <li>D7/D1 Ratio: +[14.6 % (41% to 48%)]</li>
-          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-green-700">+27%</div>
+              <div className="text-xs text-gray-700">Session time<br /><span className="font-mono">44 → 56 mins</span></div>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-blue-700">+5%</div>
+              <div className="text-xs text-gray-700">Puzzle solve rate<br /><span className="font-mono">65% → 70%</span></div>
+            </div>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-yellow-700">+2.5%</div>
+              <div className="text-xs text-gray-700">Higher Grid Players<br /><span className="font-mono">33% → 35.5%</span></div>
+            </div>
+            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-purple-700">+14.6%</div>
+              <div className="text-xs text-gray-700">D7/D1 Ratio<br /><span className="font-mono">41% → 48%</span></div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 12 — Final Design System & Visuals */}
+      {/* Final Design System & Visuals */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">12 — Final Design System & Visuals</h2>
@@ -413,34 +494,58 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* 13 — Why this solution works? */}
+      {/* Why this solution works? */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">13 — Why this solution works?</h2>
-          <ul className="list-disc ml-6 text-gray-700">
-            <li>Strengthens intrinsic motivation: Rewards effort, not pressure.</li>
-            <li>Creates progression: Weekly loops = soft leveling system.</li>
-            <li>Drives natural learning: More fixes → more skill → higher confidence.</li>
-            <li>Reduces intimidation: Visible growth encourages trying bigger puzzles.</li>
-          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="flex items-start gap-4 bg-pink-50 border border-pink-200 rounded-xl p-5">
+              <MdFavorite className="text-3xl text-pink-500 mt-1" />
+              <div>
+                <div className="font-semibold text-pink-800 mb-1">Strengthens intrinsic motivation</div>
+                <div className="text-gray-700 text-sm">Rewards effort, not pressure.</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 bg-blue-50 border border-blue-200 rounded-xl p-5">
+              <MdTrendingUp className="text-3xl text-blue-500 mt-1" />
+              <div>
+                <div className="font-semibold text-blue-800 mb-1">Creates progression</div>
+                <div className="text-gray-700 text-sm">Weekly loops = soft leveling system.</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 bg-green-50 border border-green-200 rounded-xl p-5">
+              <MdSchool className="text-3xl text-green-600 mt-1" />
+              <div>
+                <div className="font-semibold text-green-800 mb-1">Drives natural learning</div>
+                <div className="text-gray-700 text-sm">More fixes → more skill → higher confidence.</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 bg-purple-50 border border-purple-200 rounded-xl p-5">
+              <MdVisibility className="text-3xl text-purple-500 mt-1" />
+              <div>
+                <div className="font-semibold text-purple-800 mb-1">Reduces intimidation</div>
+                <div className="text-gray-700 text-sm">Visible growth encourages trying bigger puzzles.</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 14 — Next Steps */}
+      {/* Next Steps */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">14 — Next Steps</h2>
           <ul className="list-disc ml-6 text-gray-700">
             <li>Full global rollout</li>
             <li>Explore bot-seeded leaderboard tiers</li>
-            <li>Build sustainable daily/weekly goals</li>
+            <li>Build sustainable long-term goals</li>
             <li>Personalize progression pathways</li>
           </ul>
         </div>
       </section>
 
-      {/* 15 — Closing Summary */}
-      <section className="py-20 px-4 md:px-0">
+      {/* Closing Summary */}
+      <section className="py-20 pb-8 px-4 md:px-0">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">15 — Closing Summary</h2>
           <p className="text-lg text-gray-800">
@@ -451,6 +556,11 @@ export default function ProjectPage() {
           </Link>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="w-full py-8 text-center text-gray-400 text-sm font-medium mt-[-1rem]">
+        Last updated in November, 2025.
+      </footer>
     </div>
   );
 }

@@ -137,3 +137,19 @@ img[alt] { -webkit-user-drag: none; user-select: none; display: block; max-width
 .hr-subtle { border-top: 1px solid rgba(156,163,175,0.35); margin: 0.75rem 0; }
 .project-inner-padding { padding: 6.5% 5%; }
 @media (min-width: 768px) { .project-inner-padding { padding: 5.5% 4.5%; } }
+
+/* Ensure Material Symbols render as icons */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* You can adjust this */
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
