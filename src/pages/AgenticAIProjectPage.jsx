@@ -127,24 +127,43 @@ export default function AgenticAIProjectPage() {
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">01 — Context</h2>
+          {/* Context Section visual placeholders */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white rounded-xl shadow p-4 flex flex-col items-center">
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold mb-2">
                 IC Memo Preview
               </span>
-              <span className="text-gray-500 text-sm">[VISUAL_PLACEHOLDER]</span>
+              <div className="w-full h-32 flex items-center justify-center">
+                <img
+                  src="/images/ip/Icon-IP.png"
+                  alt="IC Memo Preview"
+                  className="object-cover w-full h-full rounded-lg"
+                />
+              </div>
             </div>
             <div className="bg-white rounded-xl shadow p-4 flex flex-col items-center">
               <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold mb-2">
                 Chat Interface
               </span>
-              <span className="text-gray-500 text-sm">[VISUAL_PLACEHOLDER]</span>
+              <div className="w-full h-32 flex items-center justify-center">
+                <img
+                  src="/images/ip/Icon-IP.png"
+                  alt="Chat Interface"
+                  className="object-cover w-full h-full rounded-lg"
+                />
+              </div>
             </div>
             <div className="bg-white rounded-xl shadow p-4 flex flex-col items-center">
               <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold mb-2">
                 Meeting Notes Prep
               </span>
-              <span className="text-gray-500 text-sm">[VISUAL_PLACEHOLDER]</span>
+              <div className="w-full h-32 flex items-center justify-center">
+                <img
+                  src="/images/ip/Icon-IP.png"
+                  alt="Meeting Notes Prep"
+                  className="object-cover w-full h-full rounded-lg"
+                />
+              </div>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow p-6 mb-4">
@@ -328,12 +347,17 @@ export default function AgenticAIProjectPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             04 — How I Approached the Problem?
           </h2>
+          {/* Approach Section image placeholders */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
     {/* Step 1 */}
     <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
       <div className="relative w-full flex flex-col items-center">
-        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0">
-          <span className="text-white text-3xl font-bold">Image 1</span>
+        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
+          <img
+            src="/images/ip/Icon-IP.png"
+            alt="Step 1"
+            className="object-cover w-full h-full rounded-2xl"
+          />
         </div>
         <div
           className="absolute left-1/2"
@@ -359,8 +383,12 @@ export default function AgenticAIProjectPage() {
     {/* Step 2 */}
     <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
       <div className="relative w-full flex flex-col items-center">
-        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0">
-          <span className="text-white text-3xl font-bold">Image 2</span>
+        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
+          <img
+            src="/images/ip/Icon-IP.png"
+            alt="Step 2"
+            className="object-cover w-full h-full rounded-2xl"
+          />
         </div>
         <div
           className="absolute left-1/2"
@@ -386,8 +414,12 @@ export default function AgenticAIProjectPage() {
     {/* Step 3 */}
     <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
       <div className="relative w-full flex flex-col items-center">
-        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0">
-          <span className="text-white text-3xl font-bold">Image 3</span>
+        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
+          <img
+            src="/images/ip/Icon-IP.png"
+            alt="Step 3"
+            className="object-cover w-full h-full rounded-2xl"
+          />
         </div>
         <div
           className="absolute left-1/2"
@@ -413,8 +445,12 @@ export default function AgenticAIProjectPage() {
     {/* Step 4 */}
     <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
       <div className="relative w-full flex flex-col items-center">
-        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0">
-          <span className="text-white text-3xl font-bold">Image 4</span>
+        <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
+          <img
+            src="/images/ip/Icon-IP.png"
+            alt="Step 4"
+            className="object-cover w-full h-full rounded-2xl"
+          />
         </div>
         <div
           className="absolute left-1/2"
@@ -472,10 +508,12 @@ export default function AgenticAIProjectPage() {
                 <li>Update source files → reflect changes in memo</li>
                 <li>“Central vs feeder questions” to match real reasoning patterns</li>
               </ul>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2">
-                <span className="text-gray-400 text-xs">
-                  [Memo editor with inline references + structured sections]
-                </span>
+              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
+                <img
+                  src="/images/ip/Icon-IP.png"
+                  alt="Memo editor with inline references + structured sections"
+                  className="object-cover w-full h-full rounded-lg"
+                />
               </div>
             </div>
             {/* Chat-first Deal Advisor */}
@@ -496,8 +534,7 @@ export default function AgenticAIProjectPage() {
                   “Everyone’s chatting. Can we make Deal Advisor chat as well?”
                 </span>
               </div>
-              <div className="text-gray-600 text-sm mb-2">
-                The challenge: how to support rich capabilities inside a chat
+              <div className="text-gray-600 text-sm mb-2"> <span className="font-semibold">The challenge: </span>  how to support rich capabilities inside a chat
                 environment without turning everything into long messages.
               </div>
               <ul className="list-disc ml-6 text-gray-700 text-sm mb-2">
@@ -508,10 +545,12 @@ export default function AgenticAIProjectPage() {
                 <li>Multi-user conversation handling</li>
                 <li>Clear refinement loops for long outputs</li>
               </ul>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2">
-                <span className="text-gray-400 text-xs">
-                  [Chat interface with expandable outputs + action buttons]
-                </span>
+              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
+                <img
+                  src="/images/ip/Icon-IP.png"
+                  alt="Chat interface with expandable outputs + action buttons"
+                  className="object-cover w-full h-full rounded-lg"
+                />
               </div>
             </div>
             {/* Management Meeting Prep Agent */}
@@ -534,8 +573,12 @@ export default function AgenticAIProjectPage() {
                 <li>Auto-generated summaries and action items</li>
                 <li>Meeting-focused dashboard</li>
               </ul>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2">
-                <span className="text-gray-400 text-xs">[Meeting notes workspace]</span>
+              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
+                <img
+                  src="/images/ip/Icon-IP.png"
+                  alt="Meeting notes workspace"
+                  className="object-cover w-full h-full rounded-lg"
+                />
               </div>
             </div>
           </div>
