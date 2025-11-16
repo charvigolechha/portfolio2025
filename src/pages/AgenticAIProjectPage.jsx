@@ -447,21 +447,21 @@ export default function AgenticAIProjectPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             05 — Key Contributions
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-rows-1 md:rows-cols-3 gap-8 mb-8">
             {/* IC Memo & Preview Notes */}
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
               <div className="flex items-center gap-2 mb-2">
-                <MdEditNote className="text-2xl text-blue-500" />
-                <span className="font-bold text-blue-800">A. IC Memo & Preview Notes</span>
+                <MdEditNote className="text-3xl text-blue-800" />
+                <span className="font-bold text-blue-800 text-xl md:text-2xl">IC Memo & Preview Notes</span>
               </div>
               <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold w-max mb-2">
-                Fully implemented & live
+                Implemented & Live
               </span>
-              <p className="text-gray-700 text-base mb-2">
+              <p className="text-gray-700 text-base mb-2 font-semibold">
                 Helping analysts generate, edit, and trust AI-assisted memos.
               </p>
               <div className="text-gray-600 text-sm mb-2">
-                <span className="font-semibold">Why this mattered:</span> IC memos
+                <span className="font-semibold">Why? </span> IC memos
                 are central to early deal conviction. Analysts need control,
                 traceability, and the ability to iterate.
               </div>
@@ -481,13 +481,13 @@ export default function AgenticAIProjectPage() {
             {/* Chat-first Deal Advisor */}
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
               <div className="flex items-center gap-2 mb-2">
-                <MdChat className="text-2xl text-green-600" />
-                <span className="font-bold text-green-800">B. Chat-first Deal Advisor</span>
+                <MdChat className="text-2xl text-green-800" />
+                <span className="font-bold text-green-800 text-xl md:text-2xl">Chat-first Deal Advisor</span>
               </div>
               <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-semibold w-max mb-2">
-                Currently In development
+                In development
               </span>
-              <p className="text-gray-700 text-base mb-2">
+              <p className="text-gray-700 text-base mb-2 font-semibold">
                 Transforming a feature-heavy dashboard into a conversational
                 workflow.
               </p>
@@ -517,13 +517,13 @@ export default function AgenticAIProjectPage() {
             {/* Management Meeting Prep Agent */}
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
               <div className="flex items-center gap-2 mb-2">
-                <MdMeetingRoom className="text-2xl text-purple-600" />
-                <span className="font-bold text-purple-800">C. Management Meeting Prep Agent</span>
+                <MdMeetingRoom className="text-3xl text-purple-800" />
+                <span className="font-bold text-purple-800 text-xl md:text-2xl">Management Meeting Prep Agent</span>
               </div>
               <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold w-max mb-2">
                 Exploratory — parked
               </span>
-              <p className="text-gray-700 text-base mb-2">
+              <p className="text-gray-700 text-base mb-2 font-semibold">
                 Helping analysts prepare for, participate in, and summarize
                 management meetings.
               </p>

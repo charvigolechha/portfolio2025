@@ -27,9 +27,14 @@ export default function ProjectPage() {
             A data-informed UX case study
           </h2>
           <div className="flex flex-wrap gap-3 mb-6">
-            {/* Company logo placeholder */}
             <span className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-              <span className="w-5 h-5 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold">PG</span>
+              <span className="w-5 h-5 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold overflow-hidden">
+                <img
+                  src="/images/psg/Icon-PSG.png" 
+                  alt="Playsimple Games Logo"
+                  className="w-full h-full object-cover"
+                />
+              </span>
               Playsimple Games
             </span>
             <span className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
@@ -42,9 +47,14 @@ export default function ProjectPage() {
             </span>
           </div>
           <div className="w-full">
-            <div className="w-full h-64 md:h-72 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-4">
-              {/* HERO VISUAL HERE */}
-              <span className="text-gray-400 text-lg">[HERO VISUAL HERE]</span>
+            <div className="w-full h-64 md:h-80 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-4 overflow-hidden">
+              {/* HERO VISUAL */}
+              <img
+                src="/images/psg/Hero-PSG.png"
+                alt="Hero Visual"
+                className="w-full h-full object-cover"
+                style={{ objectFit: "cover" }}
+              />
             </div>
           </div>
           <div className="flex flex-wrap gap-3 mb-6">
@@ -69,16 +79,13 @@ export default function ProjectPage() {
           <div className="flex flex-row gap-6 mb-6">
             {/* Game logo */}
             <div className="flex-shrink-0">
-              <div className="relative w-32 h-32 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
-                {/* Replace with actual logo if available */}
+              <div className="relative w-48 h-48 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center border border-gray-300">
                 <img
-                  src="/images/jigsaw-app-icon.png"
-                  alt="Jigsaw Puzzle Explorer Logo"
+                  src="/images/psg/AppIcon-PSG.png"
+                  alt="Game Logo"
                   className="w-full h-full object-cover"
-                  style={{ display: "block" }}
-                  onError={e => { e.target.style.display = "none"; }}
+                  style={{ objectFit: "cover" }}
                 />
-                <span className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">2025</span>
               </div>
             </div>
             {/* About Jigsaw + features */}
@@ -130,9 +137,33 @@ export default function ProjectPage() {
             <p className="text-gray-800 mb-6 text-left">
               Identify key moments when players lose momentum, and design interventions to reduce friction and sustain long-term engagement.
             </p>
-            <div className="w-full h-48 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-8">
-              {/* VISUAL HERE */}
-              <span className="text-gray-400">[VISUAL HERE]</span>
+            <div className="w-full h-40 rounded-xl flex items-center justify-center mb-8 overflow-hidden">
+              <div className="flex w-full h-full gap-3">
+                <div className="h-full w-[55%] bg-white rounded-xl overflow-hidden shadow border border-gray-200 flex items-center justify-center">
+                  <img
+                    src="/images/psg/Starts-PSG.png"
+                    alt="Problem Visual 1"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="h-full w-[15%] bg-white rounded-xl overflow-hidden shadow border border-gray-200 flex items-center justify-center">
+                  <img
+                    src="/images/psg/Funnel-PSG.png"
+                    alt="Problem Visual 2"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="h-full w-[30%] bg-white rounded-xl overflow-hidden shadow border border-gray-200 flex items-center justify-center">
+                  <img
+                    src="/images/psg/UserInterviews-PSG.png"
+                    alt="Problem Visual 3"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              </div>
             </div>
             {/* Blockers */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -193,9 +224,13 @@ export default function ProjectPage() {
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">04 — Key Insights</h2>
-          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-8">
-            {/* VISUAL HERE: Player segments chart, performance comparison bars */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
+          <div className="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-8 overflow-hidden">
+            <img
+              src="/images/psg/Bucket-PSG.png"
+              alt="Key Insights Visual"
+              className="w-full h-full object-cover"
+              style={{ objectFit: "cover" }}
+            />
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Left column: Insight 1 & 3 */}
@@ -254,44 +289,11 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* Competitor Benchmarking */}
-      <section className="py-20 px-4 md:px-0 border-b border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">05 — Competitor Benchmarking</h2>
-          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-6">
-            {/* VISUAL HERE: Competitor matrix visual, Competitor table / UX breakdown comparison */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">Oakever – Jigsaw Scapes</h3>
-              <ul className="list-disc ml-6 text-gray-700">
-                <li>Has a leaderboard</li>
-                <li>Points are given after puzzle completion</li>
-                <li>Does not reinforce “I fix a piece → I get rewarded”</li>
-              </ul>
-            </div>
-            <div className="bg-white rounded-xl shadow p-6">
-              <h3 className="font-semibold text-lg mb-2">EasyBrain – Jigsaw Puzzles</h3>
-              <ul className="list-disc ml-6 text-gray-700">
-                <li>No leaderboard system</li>
-                <li>No motivation layer beyond daily puzzles</li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 p-6 bg-blue-50 border-l-4 border-blue-400 rounded">
-            <h4 className="font-semibold text-blue-800 mb-2">Opportunity</h4>
-            <p className="text-blue-900">
-              No competitor rewards moment-to-moment action—a gap JPE can uniquely own.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Opportunity Areas */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">06 — Opportunity Areas</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">05 — Opportunity Areas</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-pink-50 border border-pink-200 rounded-xl p-6 flex flex-col items-start">
               <div className="flex items-center gap-2 mb-2">
@@ -321,6 +323,44 @@ export default function ProjectPage() {
         </div>
       </section>
 
+      {/* Competitor Benchmarking */}
+      <section className="py-20 px-4 md:px-0 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">06 — Competitor Benchmarking</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-xl shadow p-6 flex flex-col items-start">
+              <div className="w-full h-98 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <img
+                  src="/images/psg/Scapes2-PSG.png"
+                  alt="Oakever Visual"
+                  className="w-full h-full object-cover"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Oakever – Jigsawscapes</h3>
+            </div>
+            <div className="bg-white rounded-xl shadow p-6 flex flex-col items-start">
+              <div className="w-full h-98 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+                <img
+                  src="/images/psg/EZB2-PSG.png"
+                  alt="EasyBrain Visual"
+                  className="w-full h-full object-cover"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">EasyBrain – Jigsaw Puzzles</h3>
+            </div>
+          </div>
+          <div className="mt-8 p-6 bg-blue-50 border-l-4 border-blue-400 rounded">
+            <h4 className="font-semibold text-blue-800 mb-2">Opportunity</h4>
+            <p className="text-blue-900">
+              No competitor rewards moment-to-moment action—a gap JPE can uniquely own.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
       {/* Concept Direction */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
@@ -328,20 +368,39 @@ export default function ProjectPage() {
           <p className="mb-6">
             We explored systems that could: reward early behavior, normalize higher grid transitions, highlight progress, motivate long-term play
           </p>
+          <p className="text-xl mb-6 font-semibold">
+            Diverged to
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 font-semibold">Adaptive difficulty cues</div>
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4 font-semibold">Micro-goals inside puzzles</div>
-            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 font-semibold">Personalized puzzle recommendations</div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 font-semibold">Soft nudges toward higher grids</div>
-            <div className="bg-pink-50 border border-pink-200 rounded-xl p-4 font-semibold">Mastery-based milestone rewards</div>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 font-semibold">
+              Adaptive difficulty cues
+            </div>
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4 font-semibold">
+              Micro-goals inside puzzles
+            </div>
+            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 font-semibold">
+              Personalized puzzle recommendations
+            </div>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 font-semibold">
+              Soft nudges toward higher grids
+            </div>
+            <div className="bg-pink-50 border border-pink-200 rounded-xl p-4 font-semibold">
+              Mastery-based milestone rewards
+            </div>
+            <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 font-semibold">
+              Progress-based reward system (leaderboard)
+            </div>
+            <p className="text-xl mb-2 font-semibold">
+              Converged upon
+            </p>
           </div>
-          <div className="p-6 bg-green-50 border-l-4 border-green-400 rounded mb-6">
-            <h4 className="font-semibold text-green-800 mb-2">But the concept that best addressed all problem areas was:</h4>
-            <p className="text-green-900 text-lg font-bold">→ Token-Based Leaderboard System</p>
-          </div>
-          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300">
-            {/* VISUAL HERE: token flow, leaderboard mock */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
+          <div className="w-full  bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 overflow-hidden">
+            <img
+              src="/images/psg/Converged-PSG.png"
+              alt="Concept Direction Visual"
+              className="w-full h-full object-cover"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </div>
       </section>
@@ -349,33 +408,63 @@ export default function ProjectPage() {
       {/* Why Leaderboard? */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">08 — Why Leaderboard?</h2>
-          <div className="mb-6">
-            <h3 className="font-semibold text-lg mb-2">Not for competition — for intrinsic motivation.</h3>
-            <p>
-              While traditional leaderboards drive social competition, this one was conceived to drive:
-              <ul className="list-disc ml-6 text-gray-700 mt-2">
-                <li>intrinsic motivation to progress</li>
-                <li>moment-to-moment reward cycles</li>
-                <li>clear progress visibility</li>
+          <h2 className="text-3xl md:text-4xl font-bold mb-10">08 — Why Leaderboard?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <div className="bg-white rounded-2xl shadow p-8 flex flex-col h-full border border-blue-100">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="inline-block w-3 h-3 bg-blue-400 rounded-full"></span>
+                <h3 className="font-bold text-lg text-blue-900">Not for competition—for intrinsic motivation</h3>
+              </div>
+              <p className="mb-4 text-gray-700">
+                While traditional leaderboards drive social competition, this one was conceived to drive:
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-blue-400 rounded-full"></span>
+                  <span className="text-blue-700 font-medium">Intrinsic motivation to progress</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-blue-400 rounded-full"></span>
+                  <span className="text-blue-700 font-medium">Moment-to-moment reward cycles</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-blue-400 rounded-full"></span>
+                  <span className="text-blue-700 font-medium">Clear progress visibility</span>
+                </li>
               </ul>
-            </p>
-          </div>
-          <div className="mb-6">
-            <h3 className="font-semibold text-lg mb-2">Why token-based?</h3>
-            <p>
-              Unlike competitor systems that reward only completed puzzles, we chose tokens because:
-              <br />
-              <span className="block italic my-2">“I fix a piece → I earn a token. I fix more pieces → I earn more.”</span>
-              This supports:
-              <ul className="list-disc ml-6 text-gray-700 mt-2">
-                <li>micro motivation</li>
-                <li>steady dopamine loops</li>
-                <li>sense of effort → reward</li>
-                <li>Confidence building</li>
-                <li>natural skill growth</li>
+            </div>
+            {/* Right Column */}
+            <div className="bg-white rounded-2xl shadow p-8 flex flex-col h-full border border-indigo-100">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="inline-block w-3 h-3 bg-indigo-400 rounded-full"></span>
+                <h3 className="font-bold text-lg text-indigo-900">Why token-based?</h3>
+              </div>
+              <span className="block italic text-indigo-700 mb-4 text-base">“I fix a piece → I earn a token. I fix more pieces → I earn more.”</span>
+              <p className="mb-2 text-gray-700">Unlike competitor systems that reward only completed puzzles, we chose tokens because:</p>
+              <ul className="space-y-2 mt-2">
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-indigo-400 rounded-full"></span>
+                  <span className="text-indigo-700 font-medium">Micro motivation</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-indigo-400 rounded-full"></span>
+                  <span className="text-indigo-700 font-medium">Steady dopamine loops</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-indigo-400 rounded-full"></span>
+                  <span className="text-indigo-700 font-medium">Sense of effort → reward</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-indigo-400 rounded-full"></span>
+                  <span className="text-indigo-700 font-medium">Confidence building</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 bg-indigo-400 rounded-full"></span>
+                  <span className="text-indigo-700 font-medium">Natural skill growth</span>
+                </li>
               </ul>
-            </p>
+            </div>
           </div>
         </div>
       </section>
@@ -388,41 +477,57 @@ export default function ProjectPage() {
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
               <h3 className="font-semibold text-lg mb-2">Problem 01 : Players stalled at lower grids.</h3>
               <p>
-                <span className="font-semibold">Solution 01:</span> Use token rewards tied to grid size to encourage gradual movement toward bigger puzzles, making progression guided and intrinsically motivating.
+                <span className="font-semibold">Solution:</span> Use token rewards tied to grid size to encourage gradual movement toward bigger puzzles, making progression guided and intrinsically motivating.
               </p>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2">
-                {/* VISUAL HERE: Grid-size progression chart */}
-                <span className="text-gray-400">[VISUAL HERE]</span>
+              <div className="w-full bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
+                <img
+                  src="/images/psg/Solution1-PSG.png"
+                  alt="Problems Solutions Visual"
+                  className="w-full h-full object-cover"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
             </div>
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
               <h3 className="font-semibold text-lg mb-2">Problem 02 : No long-term motivation loop</h3>
               <p>
-                <span className="font-semibold">Solution 02:</span> Introduce a weekly leaderboard using token accumulation to create goal-oriented, habit-forming play without changing core gameplay.
+                <span className="font-semibold">Solution:</span> Introduce a weekly leaderboard using token accumulation to create goal-oriented, habit-forming play without changing core gameplay.
               </p>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2">
-                {/* VISUAL HERE: leaderboard cycle diagram */}
-                <span className="text-gray-400">[VISUAL HERE]</span>
+              <div className="w-full bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
+                <img
+                  src="/images/psg/Solution2-PSG.png"
+                  alt="Problems Solutions Visual"
+                  className="w-full h-full object-cover"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
             </div>
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
               <h3 className="font-semibold text-lg mb-2">Problem 03 : No mid-puzzle reinforcement</h3>
               <p>
-                <span className="font-semibold">Solution 04:</span> Reward effort by giving tokens for pieces fixed. This builds momentum and reduces mid-puzzle abandonment.
+                <span className="font-semibold">Solution:</span> Reward effort by giving tokens for pieces fixed. This builds momentum and reduces mid-puzzle abandonment.
               </p>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2">
-                {/* VISUAL HERE: Token burst animation */}
-                <span className="text-gray-400">[VISUAL HERE]</span>
+              <div className="w-full bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
+                <img
+                  src="/images/psg/Solution3-PSG.png"
+                  alt="Problems Solutions Visual"
+                  className="w-full h-full object-cover"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
             </div>
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
               <h3 className="font-semibold text-lg mb-2">Problem 04 : Newbies were stuck in low-engagement loops</h3>
               <p>
-                <span className="font-semibold">Solution 05:</span> Use reward mechanics to gently push players toward “pro-like” behaviours—higher grids, longer sessions, completing puzzles—without altering gameplay.
+                <span className="font-semibold">Solution:</span> Use reward mechanics to gently push players toward “pro-like” behaviours—higher grids, longer sessions, completing puzzles—without altering gameplay.
               </p>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2">
-                {/* VISUAL HERE: Newbie vs. Pro engagement chart */}
-                <span className="text-gray-400">[VISUAL HERE]</span>
+              <div className="w-full bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
+                <img
+                  src="/images/psg/Solution4-PSG.png"
+                  alt="Problems Solutions Visual"
+                  className="w-full h-full object-cover"
+                  style={{ objectFit: "cover" }}
+                />
               </div>
             </div>
           </div>
@@ -433,44 +538,61 @@ export default function ProjectPage() {
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">10 — The Leaderboard MVP (50% Rollout)</h2>
-          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-6">
-            {/* VISUAL HERE: Leaderboard Wireframe / Token flow diagram / UX screens */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
+          <div className="w-full bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-6 overflow-hidden">
+            <img
+              src="/images/psg/MVP-PSG.png"
+              alt="Leaderboard MVP Visual"
+              className="w-full h-full object-cover"
+              style={{ objectFit: "cover" }}
+            />
           </div>
-          <ul className="list-disc ml-6 text-gray-700 mb-4">
-            <li>Instant rewards on piece fix</li>
-            <li>Soft competition, zero pressure</li>
-            <li>Encourages mastery behaviors</li>
-            <li>Adds long-term goals</li>
-            <li>Scalable & event-ready</li>
-          </ul>
         </div>
       </section>
 
       {/* Early Results */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">11 — Early Results</h2>
-          <div className="w-full h-32 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mb-6">
-            {/* VISUAL HERE: before/after graph or conversion bar chart */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-10">11 — Early Results</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-green-700">+27%</div>
-              <div className="text-xs text-gray-700">Session time<br /><span className="font-mono">44 → 56 mins</span></div>
+            <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center flex flex-col items-center">
+              <img
+                src="/images/psg/Results1-PSG.png"
+                alt="Session Time"
+                className="w-full mb-6 object-contain"
+              />
+              <div className="text-3xl font-bold text-green-700 mb-1">+27%</div>
+              <div className="text-s text-green-700 font-semibold mb-1">Session time<br />
+              <span className="text-xs text-gray-700 font-mono">44 → 56 mins</span></div>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-blue-700">+5%</div>
-              <div className="text-xs text-gray-700">Puzzle solve rate<br /><span className="font-mono">65% → 70%</span></div>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center flex flex-col items-center">
+              <img
+                src="/images/psg/Results2-PSG.png"
+                alt="Puzzle Solve Rate"
+                className="w-full mb-6 object-contain"
+              />
+              <div className="text-3xl font-bold text-blue-700 mb-1">+5%</div>
+              <div className="text-s text-blue-700 font-semibold mb-1">Puzzle solve rate<br />
+              <span className="text-xs text-gray-700 font-mono">65% → 70%</span></div>
             </div>
-            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-yellow-700">+2.5%</div>
-              <div className="text-xs text-gray-700">Higher Grid Players<br /><span className="font-mono">33% → 35.5%</span></div>
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center flex flex-col items-center">
+              <img
+                src="/images/psg/Results3-PSG.png"
+                alt="Higher Grid Players"
+                className="w-full mb-6 object-contain"
+              />
+              <div className="text-3xl font-bold text-yellow-700 mb-1">+2.5%</div>
+              <div className="text-s text-yellow-700 font-semibold mb-1">Higher Grid players<br />
+              <span className="text-xs text-gray-700 font-mono">33% → 35.5%</span></div>
             </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
-              <div className="text-2xl font-bold text-purple-700">+14.6%</div>
-              <div className="text-xs text-gray-700">D7/D1 Ratio<br /><span className="font-mono">41% → 48%</span></div>
+            <div className="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center flex flex-col items-center">
+              <img
+                src="/images/psg/Results4-PSG.png"
+                alt="D7/D1 Ratio"
+                className="w-full mb-6 object-contain"
+              />
+              <div className="text-3xl font-bold text-purple-700 mb-1">+14.6%</div>
+              <div className="text-s text-purple-700 font-semibold mb-1">D7/D1 Ratio<br />
+              <span className="text-xs text-gray-700 font-mono">41% → 48%</span></div>
             </div>
           </div>
         </div>
@@ -479,18 +601,14 @@ export default function ProjectPage() {
       {/* Final Design System & Visuals */}
       <section className="py-20 px-4 md:px-0 border-b border-gray-200 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">12 — Final Design System & Visuals</h2>
-          <ul className="list-disc ml-6 text-gray-700 mb-6">
-            <li>Leaderboard Home</li>
-            <li>Tokens Flow</li>
-            <li>Progression Milestones</li>
-            <li>Reward Ribbons</li>
-            <li>Celebration Moments</li>
-            <li>Grid size progression prompts</li>
-          </ul>
-          <div className="w-full h-40 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300">
-            {/* VISUAL HERE: VISUAL_PLACEHOLDER_BLOCK */}
-            <span className="text-gray-400">[VISUAL HERE]</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">12 — Final Design System & Visuals</h2>
+          <div className="w-full rounded-lg flex items-center justify-center overflow-hidden">
+            <img
+              src="/images/psg/DS-PSG.png"
+              alt="Final Design System Visual"
+              className="w-full h-full object-cover"
+              style={{ objectFit: "cover" }}
+            />
           </div>
         </div>
       </section>
