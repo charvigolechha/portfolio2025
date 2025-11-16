@@ -636,7 +636,7 @@ export default function AgenticAIProjectPage() {
             Designing for private markets forced me to turn ambiguity into
             structured reasoning.
             <br />
-            This project strengthened my ability to design agentic workflows that
+            This project strengthened my ability to design workflows that
             feel simple, transparent, and trustworthy—even when the domain is
             complex.
           </p>

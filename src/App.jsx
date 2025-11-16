@@ -70,9 +70,9 @@ function Home() {
       </Button>
 
       {/* Hero */}
-      <section className="home flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-center">Charvi Golechha</h1>
-        <p className="text-lg md:text-xl text-gray-800 text-center">
+      <section className="home flex flex-col justify-center min-h-screen max-w-6xl px-4 mx-auto">
+        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-left">Charvi Golechha</h1>
+        <p className="text-lg md:text-xl text-gray-800 text-left">
           UX Researcher • Product Designer • Wannabe Analyst
         </p>
       </section>
