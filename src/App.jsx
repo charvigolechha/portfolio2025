@@ -1,11 +1,12 @@
 import React from "react";
 import { Routes, Route, Link, useParams } from "react-router-dom";
-import StackCarousel from "./components/StackCarousel";
 import ProjectPage from "./pages/ProjectPage";
 import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import projects from "./data/projects";
 import Button from "./components/Button"; // adjust path if needed
 import { HiOutlineDocumentArrowDown } from "react-icons/hi2"; // Add this import
+import TypewriterTitles from "./components/TypewriterTitles";
+import HorizontalCarousel from "./components/HorizontalCarousel";
 
 /* Project Card */
 function ProjectCard({ title, company, year, image, slug }) {
@@ -49,12 +50,6 @@ function ProjectCard({ title, company, year, image, slug }) {
 
 /* Home */
 function Home() {
-  const lifeItems = [
-    { src: "/images/life1.jpg", caption: "Presenting my research on equitable game design at ServDes 2025." },
-    { src: "/images/life2.jpg", caption: "Game research talk — ServDes conference snapshot." },
-    { src: "/images/life3.jpg", caption: "Fieldwork & playtesting sessions with real players." },
-  ];
-
   return (
     <div className="relative">
       {/* Floating resume button */}
@@ -73,7 +68,7 @@ function Home() {
       <section className="home flex flex-col justify-center min-h-screen max-w-6xl px-4 mx-auto">
         <h1 className="text-5xl md:text-6xl font-bold mb-4 text-left">Charvi Golechha</h1>
         <p className="text-lg md:text-xl text-gray-800 text-left">
-          UX Researcher • Product Designer • Wannabe Analyst
+          <TypewriterTitles />
         </p>
       </section>
 
@@ -106,19 +101,22 @@ function Home() {
 
       {/* My Life */}
       <section className="my-life py-16 relative">
-        <div className="max-w-5xl mx-auto flex items-center justify-center">
-          <div className="w-full flex flex-col md:flex-row items-center justify-center gap-4">
-            <div className="flex-shrink-0 md:w-1/2 flex justify-center">
-              <div className="carousel-wrapper max-w-[560px] w-full md:-mr-6">
-                <StackCarousel items={lifeItems} interval={4500} />
-              </div>
-            </div>
-
-            <div className="w-full md:w-1/2 text-center md:text-left title-column">
-              <h2 className="text-4xl font-bold text-black">My Life</h2>
-              <p className="italic text-gray-500 mt-2">(what I wish you were here for)</p>
-            </div>
-          </div>
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-bold text-black mb-2 text-center md:text-center">My Life</h2>
+          <p className="italic text-gray-500 mb-6 text-center md:text-center">(what I wish you were here for)</p>
+          <HorizontalCarousel
+            items={[
+              { src: "/images/life1.jpg", caption: "Presenting my research on equitable game design at ServDes 2025." },
+              { src: "/images/life2.jpg", caption: "Game research talk — ServDes conference snapshot." },
+              { src: "/images/life3.jpg", caption: "Fieldwork & playtesting sessions with real players." },
+              { src: "/images/life4.jpg", caption: "Skating in the city after a long day." },
+              { src: "/images/life5.jpg", caption: "My sketchbook and coffee ritual." },
+              { src: "/images/life6.jpg", caption: "Late-night Figma explorations." },
+              { src: "/images/life7.jpg", caption: "Tennis with friends." },
+              { src: "/images/life8.jpg", caption: "Travel snapshots from 2025." },
+            ]}
+            interval={3200}
+          />
         </div>
       </section>
 
