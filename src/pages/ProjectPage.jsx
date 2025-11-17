@@ -1,21 +1,42 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { MdSportsEsports, MdPsychology, MdLeaderboard, MdTimeline, MdRecordVoiceOver, MdCalendarToday, MdGroups, MdFavorite, MdTrendingUp, MdSchool, MdVisibility } from "react-icons/md";
 import Button from "../components/Button";
 
 export default function ProjectPage() {
+  const [atBottom, setAtBottom] = useState(false);
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (!footerRef.current) return;
+      const footerRect = footerRef.current.getBoundingClientRect();
+      // Increase the buffer to avoid flicker
+      setAtBottom(footerRect.top < window.innerHeight - 120);
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="project-case-study bg-white text-black">
-      {/* Top Back Button */}
-      <div className="w-full max-w-5xl mx-auto pt-8 px-4 md:px-0">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 font-semibold shadow transition mb-8"
+      {/* Fixed Back to Home button (top right) */}
+      {!atBottom && (
+        <div
+          className="fixed right-8 z-50"
+          style={{ top: 88, justifyContent: "center" }} // removed width
         >
-          <span aria-hidden="true" className="text-xl">←</span>
-          Back to Home
-        </Link>
-      </div>
+          <Link
+            to="/"
+            className="flex items-center gap-2 bg-gray-100 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-6 py-3 rounded-full transition"
+            // removed width style
+          >
+            <span className="text-xl">&#8592;</span>
+            Back to Home
+          </Link>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="hero-section py-16 px-4 md:px-0 border-b border-gray-200">
@@ -670,14 +691,27 @@ export default function ProjectPage() {
           <p className="text-lg text-gray-800">
             I transformed Jigsaw Puzzle Explorer’s progression model by turning moment-to-moment play into a system of visible growth and intrinsic motivation—driving measurable improvements in engagement, retention, and player confidence.
           </p>
-          <Button as={Link} to="/" className="mt-10">
-            ← Back to Home
-          </Button>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full py-8 text-center text-gray-400 text-sm font-medium mt-[-1rem]">
+      {/* Static Back to Home button (between last section & footer) */}
+      {atBottom && (
+        <div className="w-full flex justify-center mb-6">
+          <Link
+            to="/"
+            className="flex items-center gap-2 bg-gray-100 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-6 py-3 rounded-full transition"
+            // removed width style
+          >
+            <span className="text-xl">&#8592;</span>
+            Back to Home
+          </Link>
+        </div>
+      )}
+
+      <footer
+        ref={footerRef}
+        className="w-full py-8 text-center text-gray-400 text-sm font-medium mt-[-1rem]"
+      >
         Last updated in November, 2025.
       </footer>
     </div>

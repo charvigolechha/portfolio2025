@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const TITLES = [
-  "Wannabe Analyst",
-  "Pixel Monk",
-  "\"Racoon that needs therapy \"",
-  "Serial Hobbyist",
-  "Self-Taught Skater",
-  "Human Swiss Army Knife",
+  "Wannabe Analyst 📈",
+  "Pixel Monk 📿",
+  "\"Raccoon that needs therapy 🦝\"",
+  "Serial Hobbyist 🧶",
+  "Self-Taught Skater 🛼",
+  "Human Swiss Army Knife 🧰",
 ];
 
 export default function TypewriterTitles() {
@@ -16,30 +16,35 @@ export default function TypewriterTitles() {
   const [deleting, setDeleting] = useState(false);
   const [pause, setPause] = useState(false);
 
-  // Always show this prefix
-  const prefix = "UX Researcher • Product Designer • ";
+  // JSX prefix with blue dots
+  const prefix = (
+    <>
+      UX Researcher <span className="text-blue-700 font-bold">•</span> Product Designer <span className="text-blue-700 font-bold">•</span>{" "}
+    </>
+  );
 
   useEffect(() => {
     let timeout;
+    const currentTitleArr = Array.from(TITLES[titleIdx]);
 
     if (pause) {
       timeout = setTimeout(() => setPause(false), 900);
       return () => clearTimeout(timeout);
     }
 
-    if (!deleting && charIdx < TITLES[titleIdx].length) {
+    if (!deleting && charIdx < currentTitleArr.length) {
       timeout = setTimeout(() => {
-        setDisplayed(TITLES[titleIdx].slice(0, charIdx + 1));
+        setDisplayed(currentTitleArr.slice(0, charIdx + 1).join(""));
         setCharIdx(charIdx + 1);
       }, 60);
-    } else if (!deleting && charIdx === TITLES[titleIdx].length) {
+    } else if (!deleting && charIdx === currentTitleArr.length) {
       timeout = setTimeout(() => {
         setPause(true);
         setDeleting(true);
       }, 900);
     } else if (deleting && charIdx > 0) {
       timeout = setTimeout(() => {
-        setDisplayed(TITLES[titleIdx].slice(0, charIdx - 1));
+        setDisplayed(currentTitleArr.slice(0, charIdx - 1).join(""));
         setCharIdx(charIdx - 1);
       }, 40);
     } else if (deleting && charIdx === 0) {

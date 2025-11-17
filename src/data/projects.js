@@ -2,42 +2,26 @@
 // Place real images in public/images/ and reference them via the image field.
 const projects = [
   {
-    slug: "puzzle-learning",
-    title: "Driving player-learning experience for casual puzzle games",
+    title: "Driving Player Progression in Casual Puzzle Games",
     company: "Playsimple Games",
     year: "2025",
-    image: "/images/project1.jpg",
-    // placeholders for the project page
-    goal: "Goal / problem statement placeholder: describe the main objective.",
-    research: "Research placeholder: summarize user interviews, metrics, insights.",
-    ideation: "Ideation placeholder: sketches, brainstorms, and key ideas.",
-    solution: "Solution placeholder: the final design and rationale.",
-    testing: "Testing placeholder: usability/test results and next steps."
+    slug: "puzzle-progression",
+    heroImage: "/images/psg/Hero-PSG.png",
   },
   {
-    slug: "equitable-game-design",
-    title: "Presenting my research on equitable game design",
-    company: "ServDes / Research",
+    title: "Making AI Work for Private Equity Analysts",
+    company: "Infinite Possibilities",
     year: "2025",
-    image: "/images/project2.jpg",
-    goal: "Goal / problem statement placeholder",
-    research: "Research placeholder",
-    ideation: "Ideation placeholder",
-    solution: "Solution placeholder",
-    testing: "Testing placeholder"
+    slug: "agentic-ai-private-equity",
+    heroImage: "/images/ip/Hero-IP.png",
   },
   {
-    slug: "fieldwork-playtesting",
-    title: "Fieldwork & playtesting sessions with real players",
-    company: "Fieldwork",
+    title: "Inclusive board game for the visually diverse players",
+    company: "Design Impact Movement (Titan Co. Ltd.)",
     year: "2024",
-    image: "/images/project3.jpg",
-    goal: "Goal / problem statement placeholder",
-    research: "Research placeholder",
-    ideation: "Ideation placeholder",
-    solution: "Solution placeholder",
-    testing: "Testing placeholder"
-  }
+    slug: "ezam",
+    heroImage: "/images/ezam-hero.png", // Update this path if needed
+  },
 ];
 
 export default projects;

@@ -62,7 +62,7 @@ export default function AgenticAIProjectPage() {
           <h2 className="text-xl md:text-2xl font-normal mb-6 text-left text-gray-800">
             A UX case study on designing agentic workflows for private markets.
           </h2>
-          <div className="w-full md:h-72 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-4 overflow-hidden">
+          <div className="w-full bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-4 overflow-hidden">
             <img
               src="/images/ip/Hero-IP.png"
               alt="Agentic AI Hero Visual"
