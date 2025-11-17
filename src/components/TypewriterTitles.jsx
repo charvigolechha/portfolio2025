@@ -2,12 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 
 const TITLES = [
   "Wannabe Analyst",
+  "Pixel Monk",
+  "\"Racoon that needs therapy \"",
+  "Serial Hobbyist",
   "Self-Taught Skater",
-  "Curious Researcher",
-  "Figma Power User",
-  "Game Psychology Nerd",
-  "\"Racoon that needs therapy\"",
-  "Story Collector"
+  "Human Swiss Army Knife",
 ];
 
 export default function TypewriterTitles() {

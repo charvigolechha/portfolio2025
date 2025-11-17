@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import ContributionSlideshow from "../components/ContributionSlideshow";
 import {
   MdGroups,
   MdCalendarToday,
@@ -21,11 +22,37 @@ import {
   MdShuffle,
   MdDesignServices,
   MdVisibility,
+  MdArrowBack, 
 } from "react-icons/md";
+import icMemo1 from "../assets/contributions/ic-memo-1.svg";
+import icMemo2 from "../assets/contributions/ic-memo-2.svg";
+import icMemo3 from "../assets/contributions/ic-memo-3.svg";
+import icMemo4 from "../assets/contributions/ic-memo-4.svg";
+import icMemo5 from "../assets/contributions/ic-memo-5.svg";
+import chatDeal1 from "../assets/contributions/chat-deal-1.svg";
+import chatDeal2 from "../assets/contributions/chat-deal-2.svg";
+import chatDeal3 from "../assets/contributions/chat-deal-3.svg";
+import chatDeal4 from "../assets/contributions/chat-deal-4.svg";
+import chatDeal5 from "../assets/contributions/chat-deal-5.svg";
+import meetingPrep1 from "../assets/contributions/meeting-prep-1.svg";
+import meetingPrep2 from "../assets/contributions/meeting-prep-2.svg";
+import meetingPrep3 from "../assets/contributions/meeting-prep-3.svg";
+import meetingPrep4 from "../assets/contributions/meeting-prep-4.svg";
 
 export default function AgenticAIProjectPage() {
   return (
     <div className="bg-white text-black">
+          {/* Top Back Button */}
+          <div className="w-full max-w-5xl mx-auto pt-8 px-4 md:px-0">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 font-semibold shadow transition mb-8"
+            >
+              <span aria-hidden="true" className="text-xl">←</span>
+              Back to Home
+            </Link>
+          </div>
+
       {/* Hero Section */}
       <section className="py-16 px-4 md:px-0 border-b border-gray-200">
         <div className="w-full max-w-4xl mx-auto">
@@ -35,17 +62,25 @@ export default function AgenticAIProjectPage() {
           <h2 className="text-xl md:text-2xl font-normal mb-6 text-left text-gray-800">
             A UX case study on designing agentic workflows for private markets.
           </h2>
-          <div className="w-full h-64 md:h-72 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-4">
-            <span className="text-gray-400 text-lg text-center">
-              [HERO_VISUAL: A clean split-screen mock — left: chat-first agent; right: IC memo with inline refs. Subtle “agentic intelligence” glow. Minimal, premium aesthetic.]
-            </span>
+          <div className="w-full md:h-72 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-300 mb-4 overflow-hidden">
+            <img
+              src="/images/ip/Hero-IP.png"
+              alt="Agentic AI Hero Visual"
+              className="w-full h-full object-cover"
+              style={{ objectFit: "cover" }}
+            />
           </div>
           {/* Company, Timeline, Team */}
           <div className="flex flex-wrap gap-3 mb-6">
             <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
               {/* Placeholder for company logo */}
-              <span className="w-5 h-5 bg-blue-200 rounded-full flex items-center justify-center text-xs font-bold">
-                Logo
+              <span className="w-5 h-5 bg-blue-200 rounded-full flex items-center justify-center text-xs font-bold overflow-hidden">
+                <img
+                  src="/images/ip/Icon-IP.png"
+                  alt="Company Logo"
+                  className="w-full h-full object-cover"
+                  style={{ objectFit: "cover" }}
+                />
               </span>
               Infinite Possibilities
             </span>
@@ -121,7 +156,7 @@ export default function AgenticAIProjectPage() {
           <div className="flex flex-col gap-6">
             {/* Market & Constraints */}
             <div className="bg-white rounded-xl shadow p-6">
-              <div className="font-semibold text-gray-800 mb-4">
+              <div className="font-semibold text-gray-800 mb-4 text-lg md:text-xl">
                 Market & Constraints
               </div>
               <div className="mb-6">
@@ -129,7 +164,7 @@ export default function AgenticAIProjectPage() {
               </div>
               <div className="flex flex-wrap gap-6 justify-center mb-4">
                 <div className="flex flex-col items-center">
-                  <div className="w-32 h-32 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
+                  <div className="w-36 h-36 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
                     <span className="text-blue-600 text-lg font-bold mb-1">1</span>
                     <span className="text-sm text-center text-gray-700 px-4">
                       Sparse early-stage information
@@ -137,7 +172,7 @@ export default function AgenticAIProjectPage() {
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="w-32 h-32 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
+                  <div className="w-36 h-36 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
                     <span className="text-blue-600 text-lg font-bold mb-1">2</span>
                     <span className="text-sm text-center text-gray-700 px-4">
                       Aggressive timelines
@@ -145,7 +180,7 @@ export default function AgenticAIProjectPage() {
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="w-32 h-32 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
+                  <div className="w-36 h-36 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
                     <span className="text-blue-600 text-lg font-bold mb-1">3</span>
                     <span className="text-sm text-center text-gray-700 px-4">
                       High-stakes decisions
@@ -153,7 +188,7 @@ export default function AgenticAIProjectPage() {
                   </div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="w-32 h-32 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
+                  <div className="w-36 h-36 rounded-full bg-blue-50 flex flex-col items-center justify-center mb-2 border border-blue-100 shadow-sm">
                     <span className="text-blue-600 text-lg font-bold mb-1">4</span>
                     <span className="text-sm text-center text-gray-700 px-4">
                       Strict expectations of traceability
@@ -167,15 +202,18 @@ export default function AgenticAIProjectPage() {
             </div>
             {/* Target Audience */}
             <div className="bg-white rounded-xl shadow p-6">
-              <div className="font-semibold text-gray-800 mb-4">
+              <div className="font-semibold text-gray-800 mb-4 text-lg md:text-xl">
                 Target Audience
               </div>
               <div className="flex flex-col md:flex-row items-center">
                 {/* Illustration Placeholder */}
-                <div className="flex-shrink-0 w-28 h-28 bg-gray-200 rounded-xl flex items-center justify-center mb-4 md:mb-0 md:mr-6">
-                  <span className="text-gray-400 text-center text-sm">
-                    [Illustration: Analyst/Principal]
-                  </span>
+                <div className="flex-shrink-0 w-48  rounded-xl flex items-center justify-center mb-4 md:mb-0 md:mr-6 overflow-hidden">
+                  <img
+                    src="/images/ip/TA-IP.png"
+                    alt="Analyst/Principal Illustration"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 {/* Audience Details */}
                 <div className="flex-1 flex flex-col items-center md:items-start">
@@ -195,7 +233,7 @@ export default function AgenticAIProjectPage() {
             </div>
             {/* Market Gap */}
             <div className="bg-white rounded-xl shadow p-6">
-              <div className="font-semibold text-gray-800 mb-4">
+              <div className="font-semibold text-gray-800 mb-4 text-lg md:text-xl">
                 Market Gap
               </div>
               <div className="mb-4">
@@ -243,10 +281,13 @@ export default function AgenticAIProjectPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">02 — The UX Problem</h2>
           <div className="bg-white rounded-xl shadow p-8 flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-shrink-0 w-32 h-32 bg-gray-100 rounded-xl flex items-center justify-center mb-6 md:mb-0">
-              <span className="text-gray-400 text-center text-base">
-                [Illustration: Analyst rejecting "AI answers"]
-              </span>
+            <div className="flex-shrink-0 w-56 rounded-xl flex items-center justify-center mb-6 md:mb-0 overflow-hidden">
+              <img
+                src="/images/ip/BadAI-IP.png"
+                alt="Analyst rejecting AI answers Illustration"
+                className="w-full h-full object-cover"
+                style={{ objectFit: "cover" }}
+              />
             </div>
             <div className="flex-1">
               <p className="text-xl font-semibold text-gray-900 mb-4">
@@ -296,9 +337,12 @@ export default function AgenticAIProjectPage() {
             <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
               <div className="relative w-full flex flex-col items-center">
                 <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
-                  <span className="text-gray-400 text-lg text-center">
-                    [VISUAL_PLACEHOLDER]
-                  </span>
+                  <img
+                    src="/images/ip/Step1-IP.png"
+                    alt="Agentic AI Approach Visual"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <div
                   className="absolute left-1/2"
@@ -317,7 +361,7 @@ export default function AgenticAIProjectPage() {
                   Understanding workflows
                 </span>
                 <span className="text-base text-gray-600 text-center">
-                  Founder discussions → sample IC memos → typical investment workflows → markup patterns.
+                  Founder discussions → sample IC memos → typical investment workflows → markup patterns. <br /> (And shadowing countless client calls.)
                 </span>
               </div>
             </div>
@@ -325,9 +369,12 @@ export default function AgenticAIProjectPage() {
             <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
               <div className="relative w-full flex flex-col items-center">
                 <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
-                  <span className="text-gray-400 text-lg text-center">
-                    [VISUAL_PLACEHOLDER]
-                  </span>
+                  <img
+                    src="/images/ip/Step2-IP.png"
+                    alt="Agentic AI Approach Visual"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <div
                   className="absolute left-1/2"
@@ -346,7 +393,7 @@ export default function AgenticAIProjectPage() {
                   Turning vague ideas into structured flows
                 </span>
                 <span className="text-base text-gray-600 text-center">
-                  Every feature was mapped into clear steps, logic, and system behavior (before any UI).
+                  Every feature was mapped into clear steps, logic, and system behavior (before any UI) – bringing clarity from daily AI tools into high-stakes private-markets workflows. 
                 </span>
               </div>
             </div>
@@ -354,9 +401,12 @@ export default function AgenticAIProjectPage() {
             <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
               <div className="relative w-full flex flex-col items-center">
                 <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
-                  <span className="text-gray-400 text-lg text-center">
-                    [VISUAL_PLACEHOLDER]
-                  </span>
+                  <img
+                    src="/images/ip/Step3-IP.png"
+                    alt="Agentic AI Approach Visual"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <div
                   className="absolute left-1/2"
@@ -383,9 +433,12 @@ export default function AgenticAIProjectPage() {
             <div className="flex flex-col items-center bg-white rounded-2xl shadow p-10">
               <div className="relative w-full flex flex-col items-center">
                 <div className="w-full max-w-2xl h-72 bg-gray-300 rounded-2xl flex items-center justify-center mb-0 overflow-hidden">
-                  <span className="text-gray-400 text-lg text-center">
-                    [VISUAL_PLACEHOLDER]
-                  </span>
+                  <img
+                    src="/images/ip/Step4-IP.png"
+                    alt="Agentic AI Approach Visual"
+                    className="w-full h-full object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
                 </div>
                 <div
                   className="absolute left-1/2"
@@ -435,18 +488,31 @@ export default function AgenticAIProjectPage() {
                 <span className="font-semibold">Why this mattered: </span>
                 IC memos are central to early deal conviction. Analysts need control, traceability, and the ability to iterate.
               </div>
-              <ul className="list-disc ml-6 text-gray-700 text-sm mb-2">
-                <li>Inline references for source transparency</li>
-                <li>Add/remove/customize memo sections</li>
-                <li>Regenerate specific sections (not whole memos)</li>
-                <li>Update source files → reflect changes in memo</li>
-                <li>“Central vs feeder questions” to match real reasoning patterns</li>
-              </ul>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
-                <span className="text-gray-400 text-center text-xs">
-                  [Visual Placeholder: Memo editor with inline references + structured sections]
-                </span>
-              </div>
+              <ContributionSlideshow
+                slides={[
+                  {
+                    image: icMemo1,
+                    caption: "Inline references for source transparency",
+                  },
+                  {
+                    image: icMemo2,
+                    caption: "Add/remove/customize memo sections",
+                  },
+                  {
+                    image: icMemo3,
+                    caption: "Regenerate specific sections (not whole memos)",
+                  },
+                  {
+                    image: icMemo4,
+                    caption: "Update source files → reflect changes in memo",
+                  },
+                  {
+                    image: icMemo5,
+                    caption: "'Central vs feeder questions' to match real reasoning patterns",
+                  },
+                ]}
+                interval={3500}
+              />
             </div>
             {/* Chat-first Deal Advisor */}
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
@@ -466,24 +532,34 @@ export default function AgenticAIProjectPage() {
                 </span>
               </div>
               <div className="text-gray-600 text-sm mb-2">
-                <span className="font-semibold">Challenges: </span>
-                Preserve complex capabilities without overwhelming users<br />
-                Prevent chat from becoming unreadable text dumps<br />
-                Keep reasoning transparent
+                <span className="font-semibold">Challenge: </span>
+                how to support rich capabilities inside a chat environment without turning everything into long, unreadable messages.
               </div>
-              <ul className="list-disc ml-6 text-gray-700 text-sm mb-2">
-                <li>Structured cards instead of long messages</li>
-                <li>Collapsible sections for readability</li>
-                <li>Inline edit / regenerate / expand controls</li>
-                <li>System actions separated from natural language</li>
-                <li>Multi-user conversation handling</li>
-                <li>Clear refinement loops for long outputs</li>
-              </ul>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
-                <span className="text-gray-400 text-center text-xs">
-                  [Visual Placeholder: Chat interface with expandable outputs + action buttons]
-                </span>
-              </div>
+              <ContributionSlideshow
+                slides={[
+                  {
+                    image: chatDeal1,
+                    caption: "Structured cards instead of long messages",
+                  },
+                  {
+                    image: chatDeal2,
+                    caption: "Collapsible sections for readability",
+                  },
+                  {
+                    image: chatDeal3,
+                    caption: "Inline edit / regenerate / expand controls",
+                  },
+                  {
+                    image: chatDeal4,
+                    caption: "System actions separated from natural language",
+                  },
+                  {
+                    image: chatDeal5,
+                    caption: "Multi-user conversation handling & clear refinement loops",
+                  },
+                ]}
+                interval={3500}
+              />
             </div>
             {/* Management Meeting Prep Agent */}
             <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-2">
@@ -497,18 +573,31 @@ export default function AgenticAIProjectPage() {
               <p className="text-gray-700 text-base mb-2 font-semibold">
                 Helping analysts prepare for, participate in, and synthesize management meetings.
               </p>
-              <ul className="list-disc ml-6 text-gray-700 text-sm mb-2">
-                <li>Pre-meeting briefs</li>
-                <li>Note-taking tied to transcripts</li>
-                <li>Highlighting risks, insights, and follow-ups</li>
-                <li>Auto-generated summaries and action items</li>
-                <li>Meeting-focused dashboard</li>
-              </ul>
-              <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-300 mt-2 overflow-hidden">
-                <span className="text-gray-400 text-center text-xs">
-                  [Visual Placeholder: Meeting notes workspace]
-                </span>
-              </div>
+              <ContributionSlideshow
+                slides={[
+                  {
+                    image: meetingPrep1,
+                    caption: "Pre-meeting briefs",
+                  },
+                  {
+                    image: meetingPrep2,
+                    caption: "Note-taking tied to transcripts",
+                  },
+                  {
+                    image: meetingPrep3,
+                    caption: "Highlighting risks, insights, and follow-ups",
+                  },
+                  {
+                    image: meetingPrep4,
+                    caption: "Auto-generated summaries and action items",
+                  },
+                  // {
+                  //   image: meetingPrep5,
+                  //   caption: "Meeting-focused dashboard",
+                  // },
+                ]}
+                interval={3500}
+              />
             </div>
           </div>
         </div>
@@ -525,7 +614,7 @@ export default function AgenticAIProjectPage() {
                 Clearer, more transparent AI outputs
               </span>
               <span className="text-gray-700 text-sm text-center mt-1">
-                Analysts can see how answers are generated and trust the results.
+                Analysts could see sources, reasoning steps, and sections clearly — reducing uncertainty and increasing trust in AI-generated content.
               </span>
             </div>
             <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
@@ -534,7 +623,7 @@ export default function AgenticAIProjectPage() {
                 Faster analyst workflows
               </span>
               <span className="text-gray-700 text-sm text-center mt-1">
-                Routine tasks and research steps are streamlined, saving valuable time.
+                Key tasks like reviewing notes, regenerating sections, and iterating on memos became quicker through structured controls and predictable interactions.
               </span>
             </div>
             <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
@@ -543,7 +632,7 @@ export default function AgenticAIProjectPage() {
                 Stronger reasoning patterns for deal-work
               </span>
               <span className="text-gray-700 text-sm text-center mt-1">
-                The system encourages structured thinking and defensible conclusions.
+                The system now guides analysts through more coherent, step-by-step analysis, mirroring how real investment decisions are formed.
               </span>
             </div>
             <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center">
@@ -552,7 +641,7 @@ export default function AgenticAIProjectPage() {
                 Foundation for scalable agentic UX
               </span>
               <span className="text-gray-700 text-sm text-center mt-1">
-                Design patterns can be extended to new workflows and teams as the product grows.
+                The interaction patterns created here now serve as reusable building blocks for future agents, ensuring consistency as the platform expands.
               </span>
             </div>
           </div>
@@ -561,17 +650,22 @@ export default function AgenticAIProjectPage() {
 
       {/* Closing Summary */}
       <section className="py-20 pb-8 px-4 md:px-0">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">07 — Closing Summary</h2>
           <p className="text-lg text-gray-800 mb-4">
-            Private markets are complex, and so was the AI. My job was to turn that complexity into clarity.<br />
-            By defining flows, constraints, and interaction rules, I shaped how the AI presented its reasoning, refined its outputs, and collaborated with analysts — making a high-judgment domain feel simple, transparent, and trust-worthy.
+            Private markets are complex, and so was the AI. My job was to turn that complexity into clarity.</p>
+            <p className="text-lg text-gray-800 mb-4">By defining flows, constraints, and interaction rules, I shaped how the AI presented its reasoning, refined its outputs, and collaborated with analysts — making a high-judgment domain feel simple, transparent, and trust-worthy.
           </p>
           <Button as={Link} to="/" className="mt-10">
             ← Back to Home
           </Button>
         </div>
       </section>
+
+    {/* Footer */}
+      <footer className="w-full py-8 text-center text-gray-400 text-sm font-medium mt-[-1rem]">
+        Last updated in November, 2025.
+      </footer>
     </div>
   );
 }

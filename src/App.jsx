@@ -99,11 +99,43 @@ function Home() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section className="about py-20 max-w-4xl mx-auto px-6 text-center mb-0">
+        <h2 className="text-3xl md:text-4xl font-bold mb-10 tracking-tight">Hello!</h2>
+        <div className="flex flex-col items-center gap-8">
+          <div>
+            <p className="text-l md:text-4xl font-bold text-gray-900 leading-tight mb-6">
+              I’m Charvi — a designer obsessed with{" "}
+              <span className="text-blue-700">bringing clarity</span> to complex systems.
+            </p>
+          </div>
+          <div>
+            <p className="uppercase text-s font-bold text-gray-400 tracking-widest mb-2">What I Do</p>
+            <p className="text-lg md:text-xl text-gray-700 font-medium max-w-4xl mx-auto mb-4">
+              So far, I've loved turning{" "}
+              <span className="font-semibold text-blue-700">messy systems</span> and{" "}
+              <span className="font-semibold text-blue-700">vague ideas</span> into experiences that make sense — across{" "}
+              <span className="font-semibold text-blue-700">gaming</span>,{" "}
+              <span className="font-semibold text-blue-700">private markets</span>,{" "}
+              <span className="font-semibold text-blue-700">service platforms</span>, and even the occasional hardware experiment
+              <span className="italic text-gray-700"> (yes, including a terracotta air cooler)</span>.
+            </p>
+          </div>
+            <div>
+              <p className="uppercase text-s font-bold text-gray-400 tracking-widest mb-2">Beyond Work</p>
+              <p className="text-lg md:text-xl text-gray-700 font-medium max-w-4xl mx-auto">
+                Off-screen, I switch between{" "}
+                <span className="font-semibold text-blue-700">tennis</span>,{" "}
+                <span className="font-semibold text-blue-700">painting</span>, and whatever{" "}
+                <span className="font-semibold text-blue-700">new hobby</span> I decide to obsess over that month.{" "}
+              </p>
+            </div>
+          </div>
+      </section>
+
       {/* My Life */}
-      <section className="my-life py-16 relative">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold text-black mb-2 text-center md:text-center">My Life</h2>
-          <p className="italic text-gray-500 mb-6 text-center md:text-center">(what I wish you were here for)</p>
+      <section className="my-life py-0 md:py-0 relative mt--80">
+        <div className="max-w-5xl mx-auto mb-8">
           <HorizontalCarousel
             items={[
               { src: "/images/life1.jpg", caption: "Presenting my research on equitable game design at ServDes 2025." },
@@ -115,20 +147,9 @@ function Home() {
               { src: "/images/life7.jpg", caption: "Tennis with friends." },
               { src: "/images/life8.jpg", caption: "Travel snapshots from 2025." },
             ]}
-            interval={3200}
+            interval={5000}
           />
         </div>
-      </section>
-
-      {/* About Section */}
-      <section className="about py-20 max-w-4xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-        <p className="text-gray-700 text-lg leading-relaxed max-w-2xl mx-auto">
-          I’m a UX designer and researcher driven by curiosity — exploring how people interact with
-          systems, interfaces, and each other. My work spans playful experiences, accessibility-focused
-          design, and data-informed decision-making. Outside design, I love writing, tennis, and digging
-          into game psychology.
-        </p>
       </section>
 
       {/* Get In Touch */}
