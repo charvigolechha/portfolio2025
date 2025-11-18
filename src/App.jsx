@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Routes, Route, Link, useParams, useLocation } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 import ProjectPage from "./pages/ProjectPage";
 import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import EzamCaseStudy from "./pages/EzamCaseStudy";
@@ -181,9 +182,18 @@ function ScrollToTop() {
 export default function App() {
   const location = useLocation();
   const isProjectPage = location.pathname.startsWith("/projects/");
+  const resumeClickCount = useRef(0);
+
+  const handleResumeClick = () => {
+    resumeClickCount.current += 1;
+    if (resumeClickCount.current === 2) {
+      toast("Check your downloads!");
+    }
+  };
 
   return (
     <div className="relative">
+      <Toaster position="top-center" />
       <ScrollToTop />
       {/* Floating resume button - always visible */}
       <Button
@@ -192,6 +202,7 @@ export default function App() {
         rel="noopener noreferrer"
         download
         className="fixed top-8 right-8 flex items-center gap-2 bg-blue-700 text-white hover:bg-blue-600 shadow-lg font-semibold px-6 py-3 rounded-full transition z-50"
+        onClick={handleResumeClick}
       >
         <HiOutlineDocumentArrowDown className="text-xl text-white" />
         <span className="text-white font-semibold">Resume</span>
