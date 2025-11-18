@@ -656,9 +656,6 @@ export default function AgenticAIProjectPage() {
             Private markets are complex, and so was the AI. My job was to turn that complexity into clarity.</p>
             <p className="text-lg text-gray-800 mb-4">By defining flows, constraints, and interaction rules, I shaped how the AI presented its reasoning, refined its outputs, and collaborated with analysts — making a high-judgment domain feel simple, transparent, and trust-worthy.
           </p>
-          <Button as={Link} to="/" className="mt-10">
-            ← Back to Home
-          </Button>
         </div>
       </section>
 

@@ -694,19 +694,6 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* Static Back to Home button (between last section & footer) */}
-      {atBottom && (
-        <div className="w-full flex justify-center mb-6">
-          <Link
-            to="/"
-            className="flex items-center gap-2 bg-gray-100 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-6 py-3 rounded-full transition"
-            // removed width style
-          >
-            <span className="text-xl">&#8592;</span>
-            Back to Home
-          </Link>
-        </div>
-      )}
 
       <footer
         ref={footerRef}

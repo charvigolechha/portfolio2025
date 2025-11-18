@@ -1,11 +1,11 @@
-import React from "react";
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, Link, useParams, useLocation } from "react-router-dom";
 import ProjectPage from "./pages/ProjectPage";
 import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import EzamCaseStudy from "./pages/EzamCaseStudy";
 import projects from "./data/projects";
 import Button from "./components/Button";
-import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
+import { HiOutlineDocumentArrowDown, HiOutlineArrowRightCircle } from "react-icons/hi2";
 import TypewriterTitles from "./components/TypewriterTitles";
 import HorizontalCarousel from "./components/HorizontalCarousel";
 
@@ -30,13 +30,17 @@ function ProjectCard({ title, company, year, image, slug }) {
           <div className="relative w-full rounded-lg overflow-hidden">
             <div className="w-full bg-gray-300 rounded-md flex items-center justify-center">
               {image ? (
-                <div className="w-full aspect-[16/9] rounded-md overflow-hidden">
+                <div className="w-full aspect-[16/9] rounded-md overflow-hidden relative">
                   <img
                     src={image}
                     alt={title}
                     className="w-full h-full object-cover block"
                     draggable="false"
                   />
+                  {/* Icon overlay */}
+                  <span className="absolute bottom-3 right-3 z-10 flex items-center justify-center">
+                    <HiOutlineArrowRightCircle className="text-4xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" />
+                  </span>
                 </div>
               ) : (
                 <div className="w-full aspect-[16/9] bg-gray-400 rounded-md" />
@@ -132,27 +136,18 @@ function Home() {
         </div>
       </section>
 
-      {/* Write to me closing section */}
-      <section className="max-w-4xl mx-auto px-4 py-16 text-center mb-8">
+      {/* Closing Section */}
+      <section className="max-w-4xl mx-auto px-6 py-16 text-center">
         <h3 className="text-2xl md:text-3xl font-bold mb-6">
-          Write to me <span className="font-normal">— worst case, I send moodboards. 📩</span>
+          Write to me<span className="font-normal"> — worst case, I send moodboards.📩</span>
         </h3>
         <a
           href="mailto:golechhacharvi@gmail.com"
-          className="inline-block bg-blue-700 text-white hover:bg-blue-600 shadow-lg font-semibold px-6 py-3 rounded-full transition"
+          className="inline-block mt-2 px-6 py-3 rounded-full bg-blue-700 text-white text-lg md:text-l font-semibold transition-all duration-300 ease-in-out hover:bg-black mb-8"
         >
           golechhacharvi@gmail.com
         </a>
       </section>
-
-      {/* Get In Touch */}
-      <footer className="text-center py-12 border-t border-gray-300">
-        <p className="mb-2">© 2025 Charvi Golechha • Designed & coded with care.</p>
-        <p className="flex justify-center gap-4 flex-wrap">
-          <a href="https://linkedin.com/in/charvigolechha" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600">LinkedIn</a>•
-          <a href="https://behance.net/charvigolechha" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-gray-600">Behance</a>
-        </p>
-      </footer>
     </div>
   );
 }
@@ -170,13 +165,29 @@ function ProjectRouteHandler() {
   return <ProjectPage />;
 }
 
+/* ScrollToTop on route change */
+function ScrollToTop() {
+  const location = useLocation();
+  useEffect(() => {
+    // Only scroll to top on route change if not on home page
+    if (location.pathname !== "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location.pathname]);
+  return null;
+}
+
 /* Routes */
 export default function App() {
+  const location = useLocation();
+  const isProjectPage = location.pathname.startsWith("/projects/");
+
   return (
     <div className="relative">
+      <ScrollToTop />
       {/* Floating resume button - always visible */}
       <Button
-        href="/Resume.pdf"
+        href="/CharviGolechha_Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
         download
@@ -186,23 +197,66 @@ export default function App() {
         <span className="text-white font-semibold">Resume</span>
       </Button>
 
+      {/* Back to Home button - only on project pages */}
+      {isProjectPage && (
+        <div className="fixed right-8 z-40" style={{ top: 88 }}>
+          <Link
+            to="/"
+            className="flex items-center gap-2 bg-gray-100/70 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-6 py-3 rounded-full transition"
+          >
+            <span className="text-xl">&#8592;</span>
+            Back to Home
+          </Link>
+        </div>
+      )}
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects/:slug" element={<ProjectRouteHandler />} />
+        <Route path="/" element={<><Home /><SiteFooter /></>} />
+        <Route path="/projects/:slug" element={<><ProjectRouteHandler /><SiteFooter /></>} />
         <Route
           path="*"
           element={
-            <div className="max-w-4xl mx-auto py-20 px-4">
-              <h2 className="text-2xl font-bold mb-4">Page not found</h2>
-              <p>
-                <Link to="/" className="text-blue-600 underline">
-                  Return home
-                </Link>
-              </p>
-            </div>
+            <>
+              <div className="max-w-4xl mx-auto py-20 px-4">
+                <h2 className="text-2xl font-bold mb-4">Page not found</h2>
+                <p>
+                  <Link to="/" className="text-blue-600 underline">
+                    Return home
+                  </Link>
+                </p>
+              </div>
+              <SiteFooter />
+            </>
           }
         />
       </Routes>
     </div>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="text-center py-12 border-t border-gray-300">
+      <p className="mb-2">© 2025 Charvi Golechha • Designed & coded with care ♥︎</p>
+      <p className="flex justify-center gap-4 flex-wrap">
+        <a
+          href="https://www.linkedin.com/in/charvigolechha/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-800 hover:text-gray-600"
+        >
+          LinkedIn
+        </a>
+        •
+        <a
+          href="https://behance.net/charvigolechha"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-800 hover:text-gray-600"
+        >
+          Behance
+        </a>
+      </p>
+    </footer>
   );
 }
