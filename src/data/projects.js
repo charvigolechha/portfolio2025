@@ -15,13 +15,7 @@ const projects = [
     slug: "agentic-ai-private-equity",
     heroImage: "/images/ip/Hero-IP.png",
   },
-  {
-    title: "Inclusive board game for the visually diverse players",
-    company: "Design Impact Movement (Titan Co. Ltd.)",
-    year: "2024",
-    slug: "ezam",
-    heroImage: "/images/ezam-hero.png", // Update this path if needed
-  },
+  // Ezam project removed temporarily until it's ready to be displayed
 ];
 
 export default projects;
