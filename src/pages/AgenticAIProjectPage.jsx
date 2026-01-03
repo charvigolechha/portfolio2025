@@ -42,17 +42,6 @@ import meetingPrep4 from "../assets/contributions/meeting-prep-4.svg";
 export default function AgenticAIProjectPage() {
   return (
     <div className="bg-white text-black">
-          {/* Top Back Button */}
-          <div className="w-full max-w-5xl mx-auto pt-8 px-4 md:px-0">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 font-semibold shadow transition mb-8"
-            >
-              <span aria-hidden="true" className="text-xl">←</span>
-              Back to Home
-            </Link>
-          </div>
-
       {/* Hero Section */}
       <section className="py-16 px-4 md:px-0 border-b border-gray-200">
         <div className="w-full max-w-4xl mx-auto">
