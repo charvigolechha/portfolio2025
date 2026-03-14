@@ -11,7 +11,7 @@ import TypewriterTitles from "./components/TypewriterTitles";
 import HorizontalCarousel from "./components/HorizontalCarousel";
 
 /* Project Card */
-function ProjectCard({ title, company, year, image, slug }) {
+function ProjectCard({ title, company, year, image, slug, companyLogo }) {
   return (
     <Link to={`/projects/${slug}`}>
       <div className="project-card bg-white rounded-xl shadow-md mx-auto overflow-hidden w-full hover:shadow-lg transition">
@@ -24,7 +24,18 @@ function ProjectCard({ title, company, year, image, slug }) {
           </div>
 
           <div className="flex justify-between text-sm text-gray-800 mb-3">
-            <span>{company}</span>
+            <span className="flex items-center gap-2">
+              {companyLogo && (
+                <span className="w-5 h-5 rounded-full flex items-center justify-center overflow-hidden">
+                  <img
+                    src={companyLogo}
+                    alt={`${company} Logo`}
+                    className="w-full h-full object-cover"
+                  />
+                </span>
+              )}
+              {company}
+            </span>
             <span>{year}</span>
           </div>
 
@@ -78,6 +89,7 @@ function Home() {
               year={project.year}
               image={project.heroImage}
               slug={project.slug}
+              companyLogo={project.companyLogo}
             />
           ))}
         </div>
@@ -201,22 +213,22 @@ export default function App() {
         target="_blank"
         rel="noopener noreferrer"
         download
-        className="fixed top-8 right-8 flex items-center gap-2 bg-blue-700 text-white hover:bg-blue-600 shadow-lg font-semibold px-6 py-3 rounded-full transition z-50"
+        className="fixed top-6 right-4 sm:top-8 sm:right-8 flex items-center gap-2 bg-blue-700 text-white hover:bg-blue-600 shadow-lg font-semibold px-3 sm:px-6 py-3 rounded-full transition z-50"
         onClick={handleResumeClick}
       >
         <HiOutlineDocumentArrowDown className="text-xl text-white" />
-        <span className="text-white font-semibold">Resume</span>
+        <span className="hidden sm:inline text-white font-semibold">Resume</span>
       </Button>
 
       {/* Back to Home button - only on project pages */}
       {isProjectPage && (
-        <div className="fixed right-8 z-40" style={{ top: 88 }}>
+        <div className="fixed right-4 sm:right-8 z-40" style={{ top: 72 }}>
           <Link
             to="/"
-            className="flex items-center gap-2 bg-gray-100/70 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-6 py-3 rounded-full transition"
+            className="flex items-center gap-2 bg-gray-100/70 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-3 sm:px-6 py-3 rounded-full transition"
           >
             <span className="text-xl">&#8592;</span>
-            Back to Home
+            <span className="hidden sm:inline">Back to Home</span>
           </Link>
         </div>
       )}

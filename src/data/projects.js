@@ -7,6 +7,7 @@ const projects = [
     year: "2025",
     slug: "puzzle-progression",
     heroImage: "/images/psg/Hero-PSG.png",
+    companyLogo: "/images/psg/Icon-PSG.png",
   },
   {
     title: "Making AI Work for Private Equity Analysts",
@@ -14,8 +15,16 @@ const projects = [
     year: "2025",
     slug: "agentic-ai-private-equity",
     heroImage: "/images/ip/Hero-IP.png",
+    companyLogo: "/images/ip/Icon-IP.png",
   },
-  // Ezam project removed temporarily until it's ready to be displayed
+  {
+    title: "Building Competitive Play Beyond Visual Dependence",
+    company: "Titan's Design Impact Movement",
+    year: "2024",
+    slug: "ezam",
+    heroImage: "/images/ezam/Hero-Ezam.png",
+    companyLogo: "/images/ezam/Icon-Ezam.png",
+  },
 ];
 
 export default projects;
