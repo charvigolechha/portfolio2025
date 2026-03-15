@@ -154,6 +154,7 @@ img[alt] { -webkit-user-drag: none; user-select: none; display: block; max-width
   -webkit-font-smoothing: antialiased;
 }
 
+
 .typewriter-cursor {
   display: inline-block;
   width: 1ch;

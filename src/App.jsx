@@ -92,10 +92,9 @@ function Home() {
           <TypewriterTitles />
         </p>
         {/* Scroll indicator */}
-        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 animate-pulse transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 9l-7 7-7-7" />
-          </svg>
+        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase">Scroll</span>
+          <div className="w-px h-8 bg-gray-300" />
         </div>
       </section>
 
