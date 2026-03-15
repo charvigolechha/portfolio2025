@@ -215,13 +215,11 @@ function ScrollToTop() {
 export default function App() {
   const location = useLocation();
   const isProjectPage = location.pathname.startsWith("/projects/");
-  const resumeClickCount = useRef(0);
-
   const handleResumeClick = () => {
-    resumeClickCount.current += 1;
-    if (resumeClickCount.current === 2) {
-      toast("Check your downloads!");
-    }
+    const a = document.createElement("a");
+    a.href = "/CharviGolechha_Resume.pdf";
+    a.download = "CharviGolechha_Resume.pdf";
+    a.click();
   };
 
   return (
@@ -233,7 +231,6 @@ export default function App() {
         href="/CharviGolechha_Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        download
         className="fixed top-6 right-4 sm:top-8 sm:right-8 flex items-center gap-2 bg-blue-700 text-white hover:bg-blue-600 shadow-lg font-semibold px-3 sm:px-6 py-3 rounded-full transition z-50"
         onClick={handleResumeClick}
       >
