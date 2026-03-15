@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Routes, Route, Link, useParams, useLocation } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import ProjectPage from "./pages/ProjectPage";
@@ -9,6 +9,7 @@ import Button from "./components/Button";
 import { HiOutlineDocumentArrowDown, HiOutlineArrowRightCircle } from "react-icons/hi2";
 import TypewriterTitles from "./components/TypewriterTitles";
 import HorizontalCarousel from "./components/HorizontalCarousel";
+import HeroAnimation from "./components/HeroAnimation";
 
 /* Project Card */
 function ProjectCard({ title, company, year, image, slug, companyLogo }) {
@@ -67,18 +68,39 @@ function ProjectCard({ title, company, year, image, slug, companyLogo }) {
 
 /* Home */
 function Home() {
+  const [showChevron, setShowChevron] = useState(true);
+  const workRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowChevron(!entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    if (workRef.current) observer.observe(workRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative">
       {/* Hero */}
-      <section className="home flex flex-col justify-center min-h-screen max-w-6xl px-4 mx-auto">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 text-left">Charvi Golechha</h1>
-        <p className="text-lg md:text-xl text-gray-800 text-left">
+      <section className="home relative flex flex-col items-center justify-center min-h-screen max-w-6xl px-4 mx-auto">
+        <div className="w-full max-w-xl mb-4">
+          <HeroAnimation />
+        </div>
+        <h1 className="text-5xl md:text-6xl font-bold text-center mb-4">Charvi Golechha</h1>
+        <p className="text-lg md:text-xl text-gray-800 text-center">
           <TypewriterTitles />
         </p>
+        {/* Scroll indicator */}
+        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 animate-pulse transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
       </section>
 
       {/* My Work */}
-      <section className="my-work py-20 max-w-6xl mx-auto px-4">
+      <section ref={workRef} className="my-work py-20 max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-left">Work</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
