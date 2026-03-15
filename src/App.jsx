@@ -159,7 +159,7 @@ function Home() {
         <div className="max-w-5xl mx-auto mb-20">
           <HorizontalCarousel
             items={[
-              { src: "/images/life1.jpg", caption: "Slow design is my love language." },
+              { src: "/images/life1.jpg", caption: "Figma was closed for this one." },
               { src: "/images/life2.jpg", caption: "Sharing my work on inclusive game design at ServDes 2025." },
               { src: "/images/life3.jpg", caption: "Powered by adrenaline and bad jokes." },
               { src: "/images/life4.jpg", caption: "Experiencing ProtoVillage with Titan" },
