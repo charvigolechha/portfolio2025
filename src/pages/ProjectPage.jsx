@@ -1,42 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { MdSportsEsports, MdPsychology, MdLeaderboard, MdTimeline, MdRecordVoiceOver, MdCalendarToday, MdGroups, MdFavorite, MdTrendingUp, MdSchool, MdVisibility } from "react-icons/md";
 import Button from "../components/Button";
 
 export default function ProjectPage() {
-  const [atBottom, setAtBottom] = useState(false);
-  const footerRef = useRef(null);
-
-  useEffect(() => {
-    function handleScroll() {
-      if (!footerRef.current) return;
-      const footerRect = footerRef.current.getBoundingClientRect();
-      // Increase the buffer to avoid flicker
-      setAtBottom(footerRect.top < window.innerHeight - 120);
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <div className="project-case-study bg-white text-black">
-      {/* Fixed Back to Home button (top right) */}
-      {!atBottom && (
-        <div
-          className="fixed right-8 z-50"
-          style={{ top: 88, justifyContent: "center" }} // removed width
-        >
-          <Link
-            to="/"
-            className="flex items-center gap-2 bg-gray-100 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-6 py-3 rounded-full transition"
-            // removed width style
-          >
-            <span className="text-xl">&#8592;</span>
-            Back to Home
-          </Link>
-        </div>
-      )}
+    <div className="project-case-study bg-white text-black pt-16">
 
       {/* Hero Section */}
       <section className="hero-section py-16 px-4 md:px-0 border-b border-gray-200">
@@ -696,7 +665,6 @@ export default function ProjectPage() {
 
 
       <footer
-        ref={footerRef}
         className="w-full py-8 text-center text-gray-400 text-sm font-medium mt-[-1rem]"
       >
         Last updated in November, 2025.

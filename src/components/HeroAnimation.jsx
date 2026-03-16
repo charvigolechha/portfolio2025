@@ -13,6 +13,8 @@ export default function HeroAnimation() {
   const containerRef  = useRef(null);
   const objectRefs    = useRef([]);
   const ponytailRef   = useRef(null);
+  const leftHandRef   = useRef(null);
+  const rightHandRef  = useRef(null);
   const speedRef      = useRef(0.4);   // degrees added per frame
   const anglesRef     = useRef(OBJECTS.map(o => o.startAngle));
 
@@ -28,6 +30,30 @@ export default function HeroAnimation() {
       repeat: -1,
       transformOrigin: "50% 0%", // pivot at the root of the ponytail
     });
+
+    // --- Left hand: typing (subtle x shift) ---
+    const typeHand = () => {
+      gsap.to(leftHandRef.current, {
+        x: Math.random() > 0.5 ? 3 : -5,
+        duration: 0.4 + Math.random() * 0.3,
+        ease: "power1.inOut",
+        delay: 0.1 + Math.random() * 0.4,
+        onComplete: typeHand,
+      });
+    };
+    typeHand();
+
+    // --- Right hand: mouse (subtle y drift) ---
+    const moveMouse = () => {
+      gsap.to(rightHandRef.current, {
+        y: Math.random() > 0.4 ? 5 : 0,
+        duration: 0.6 + Math.random() * 0.6,
+        ease: "power2.inOut",
+        delay: 0.2 + Math.random() * 0.5,
+        onComplete: moveMouse,
+      });
+    };
+    moveMouse();
 
     // --- Orbit ticker ---
     const tick = () => {
@@ -82,6 +108,8 @@ export default function HeroAnimation() {
     return () => {
       gsap.ticker.remove(tick);
       gsap.killTweensOf(ponytailRef.current);
+      gsap.killTweensOf(leftHandRef.current);
+      gsap.killTweensOf(rightHandRef.current);
       container.removeEventListener("mouseenter", slowDown);
       container.removeEventListener("mouseleave", speedUp);
     };
@@ -95,6 +123,7 @@ export default function HeroAnimation() {
         src="/illustrations/girl-back.png"
         alt="Charvi illustration"
         className="w-full h-auto block"
+        style={{ position: "relative", zIndex: 5 }}
         draggable={false}
       />
 
@@ -106,6 +135,28 @@ export default function HeroAnimation() {
         alt=""
         className="absolute pointer-events-none"
         style={{ top: "30%", left: "44.5%", width: "11%", zIndex: 15 }}
+        draggable={false}
+      />
+
+      {/* Left hand — keyboard, z below orbiting objects */}
+      {/* ⚙️ Adjust top/left/width to match your illustration */}
+      <img
+        ref={leftHandRef}
+        src="/illustrations/hand-left.png"
+        alt=""
+        className="absolute pointer-events-none"
+        style={{ top: "75%", left: "25%", width: "6.6%", zIndex: 3 }}
+        draggable={false}
+      />
+
+      {/* Right hand — mouse */}
+      {/* ⚙️ Adjust top/left/width to match your illustration */}
+      <img
+        ref={rightHandRef}
+        src="/illustrations/hand-right.png"
+        alt=""
+        className="absolute pointer-events-none"
+        style={{ top: "76%", left: "71%", width: "4.5%", zIndex: 3 }}
         draggable={false}
       />
 

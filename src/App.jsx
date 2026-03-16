@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Routes, Route, Link, useParams, useLocation } from "react-router-dom";
-import { Toaster, toast } from "react-hot-toast";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import ProjectPage from "./pages/ProjectPage";
 import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import EzamCaseStudy from "./pages/EzamCaseStudy";
 import projects from "./data/projects";
-import Button from "./components/Button";
 import { HiOutlineDocumentArrowDown, HiOutlineArrowRightCircle } from "react-icons/hi2";
 import TypewriterTitles from "./components/TypewriterTitles";
 import HorizontalCarousel from "./components/HorizontalCarousel";
@@ -67,23 +66,114 @@ function ProjectCard({ title, company, year, image, slug, companyLogo }) {
 }
 
 /* Home */
-function Home() {
-  const [showChevron, setShowChevron] = useState(true);
-  const workRef = useRef(null);
+/* Permanent site nav */
+function SiteNav() {
+  const location = useLocation();
+  const navigate  = useNavigate();
+  const isHome    = location.pathname === "/";
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
+    if (!isHome) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setShowChevron(!entry.isIntersecting),
-      { threshold: 0.1 }
+      (entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            setActiveSection(e.target.id);
+          } else if (e.target.id === "work" && e.boundingClientRect.top > 0) {
+            // Work section is below viewport — user scrolled back to hero
+            setActiveSection("");
+          }
+        });
+      },
+      { threshold: 0.3 }
     );
-    if (workRef.current) observer.observe(workRef.current);
+    ["work", "about", "contact"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
     return () => observer.disconnect();
+  }, [isHome]);
+
+  const handleNavClick = (id) => {
+    if (isHome) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 150);
+    }
+  };
+
+  const handleResumeClick = () => {
+    const a = document.createElement("a");
+    a.href = "/CharviGolechha_Resume.pdf";
+    a.download = "CharviGolechha_Resume.pdf";
+    a.click();
+  };
+
+  const handleWordmarkClick = () => {
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
+  };
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <div className="max-w-6xl mx-auto px-6 h-16 relative flex items-center justify-between">
+        {/* Wordmark */}
+        <button onClick={handleWordmarkClick} className="text-base font-bold tracking-wide text-gray-900 hover:text-gray-600 transition-colors">
+          ivvi
+        </button>
+
+        {/* Centre nav — absolutely centred so it's independent of wordmark/resume widths */}
+        <nav className="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
+          {["work", "about", "contact"].map(id => (
+            <button
+              key={id}
+              onClick={() => handleNavClick(id)}
+              className={`text-base font-semibold capitalize tracking-wide transition-colors ${
+                isHome && activeSection === id
+                  ? "text-black border-b-2 border-black pb-0.5"
+                  : "text-gray-400 hover:text-gray-700"
+              }`}
+            >
+              {id}
+            </button>
+          ))}
+        </nav>
+
+        {/* Resume */}
+        <a
+          href="/CharviGolechha_Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleResumeClick}
+          className="flex items-center gap-2 bg-blue-700 text-white hover:bg-blue-600 font-semibold px-5 py-2.5 rounded-full text-base transition-colors"
+        >
+          <HiOutlineDocumentArrowDown className="text-base" />
+          <span className="hidden sm:inline">Resume</span>
+        </a>
+      </div>
+    </header>
+  );
+}
+
+
+function Home() {
+  const [showChevron, setShowChevron] = useState(true);
+
+  useEffect(() => {
+    const handler = () => setShowChevron(window.scrollY < 80);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
   }, []);
 
   return (
     <div className="relative">
       {/* Hero */}
-      <section className="home relative flex flex-col items-center justify-center min-h-screen max-w-6xl px-4 mx-auto">
+      <section className="home relative flex flex-col items-center justify-center min-h-screen max-w-6xl px-4 mx-auto pt-16 pb-16">
         <div className="w-full max-w-xl mb-4">
           <HeroAnimation />
         </div>
@@ -92,14 +182,15 @@ function Home() {
           <TypewriterTitles />
         </p>
         {/* Scroll indicator */}
-        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-          <span className="text-xs font-semibold tracking-widest text-gray-400 uppercase">Scroll</span>
-          <div className="w-px h-8 bg-gray-300" />
+        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
         </div>
       </section>
 
       {/* My Work */}
-      <section ref={workRef} className="my-work py-20 max-w-6xl mx-auto px-4">
+      <section id="work" className="my-work py-20 max-w-6xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-left">Work</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
@@ -117,7 +208,7 @@ function Home() {
       </section>
 
       {/* About Section */}
-      <section className="about py-20 max-w-4xl mx-auto px-6 text-center mb-0">
+      <section id="about" className="about py-20 max-w-4xl mx-auto px-6 text-center mb-0">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-20">
           {/* Left column: Hello + first line */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
@@ -171,13 +262,13 @@ function Home() {
       </section>
 
       {/* Closing Section */}
-      <section className="max-w-4xl mx-auto px-6 py-16 text-center">
+      <section id="contact" className="max-w-4xl mx-auto px-6 py-16 text-center">
         <h3 className="text-2xl md:text-3xl font-bold mb-6">
-          Write to me<span className="font-normal"> — worst case, I send moodboards.📩</span>
+          Write to me<span className="font-normal"> – worst case, I send moodboards.📩</span>
         </h3>
         <a
           href="mailto:golechhacharvi@gmail.com"
-          className="inline-block mt-2 px-6 py-3 rounded-full bg-blue-700 text-white text-lg md:text-l font-semibold transition-all duration-300 ease-in-out hover:bg-black mb-8"
+          className="inline-block mt-2 px-5 py-2.5 rounded-full bg-blue-700 text-white text-base font-semibold transition-all duration-300 ease-in-out hover:bg-black mb-8"
         >
           golechhacharvi@gmail.com
         </a>
@@ -213,43 +304,11 @@ function ScrollToTop() {
 
 /* Routes */
 export default function App() {
-  const location = useLocation();
-  const isProjectPage = location.pathname.startsWith("/projects/");
-  const handleResumeClick = () => {
-    const a = document.createElement("a");
-    a.href = "/CharviGolechha_Resume.pdf";
-    a.download = "CharviGolechha_Resume.pdf";
-    a.click();
-  };
-
   return (
     <div className="relative">
       <Toaster position="top-center" />
       <ScrollToTop />
-      {/* Floating resume button - always visible */}
-      <Button
-        href="/CharviGolechha_Resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed top-6 right-4 sm:top-8 sm:right-8 flex items-center gap-2 bg-blue-700 text-white hover:bg-blue-600 shadow-lg font-semibold px-3 sm:px-6 py-3 rounded-full transition z-50"
-        onClick={handleResumeClick}
-      >
-        <HiOutlineDocumentArrowDown className="text-xl text-white" />
-        <span className="hidden sm:inline text-white font-semibold">Resume</span>
-      </Button>
-
-      {/* Back to Home button - only on project pages */}
-      {isProjectPage && (
-        <div className="fixed right-4 sm:right-8 z-40" style={{ top: 72 }}>
-          <Link
-            to="/"
-            className="flex items-center gap-2 bg-gray-100/70 text-gray-800 hover:bg-gray-200 shadow-md font-semibold px-3 sm:px-6 py-3 rounded-full transition"
-          >
-            <span className="text-xl">&#8592;</span>
-            <span className="hidden sm:inline">Back to Home</span>
-          </Link>
-        </div>
-      )}
+      <SiteNav />
 
       <Routes>
         <Route path="/" element={<><Home /><SiteFooter /></>} />

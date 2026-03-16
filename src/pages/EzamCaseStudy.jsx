@@ -3,7 +3,7 @@ import { MdCalendarToday, MdGroups } from "react-icons/md";
 
 export default function EzamCaseStudy() {
   return (
-    <div className="bg-white text-black">
+    <div className="bg-white text-black pt-16">
       {/* Hero Section */}
       <section className="py-16 px-4 md:px-0 border-b border-gray-200">
         <div className="w-full max-w-4xl mx-auto">
@@ -1585,7 +1585,7 @@ export default function EzamCaseStudy() {
                 href="https://dl.designresearchsociety.org/servdes/servdes2025/researchpapers/16/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-amber-900 text-amber-100 text-sm font-semibold px-5 py-3 rounded-lg hover:bg-amber-800 transition-colors w-full justify-center"
+                className="inline-flex items-center gap-2 bg-amber-900 text-amber-100 text-base font-semibold px-5 py-2.5 rounded-full hover:bg-amber-800 transition-colors w-full justify-center"
               >
                 Read Paper
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
