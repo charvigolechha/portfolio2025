@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 const TITLES = [
   "Wannabe Analyst 📈",
   "Pixel Monk 📿",
-  "\"Raccoon that needs therapy 🦝\"",
+  "Pattern spotter 🔍",
   "Serial Hobbyist 🧶",
   "Self-Taught Skater 🛼",
   "Human Swiss Army Knife 🧰",
@@ -36,7 +36,7 @@ export default function TypewriterTitles() {
       timeout = setTimeout(() => {
         setDisplayed(currentTitleArr.slice(0, charIdx + 1).join(""));
         setCharIdx(charIdx + 1);
-      }, 60);
+      }, 70);
     } else if (!deleting && charIdx === currentTitleArr.length) {
       timeout = setTimeout(() => {
         setPause(true);
@@ -46,7 +46,7 @@ export default function TypewriterTitles() {
       timeout = setTimeout(() => {
         setDisplayed(currentTitleArr.slice(0, charIdx - 1).join(""));
         setCharIdx(charIdx - 1);
-      }, 40);
+      }, 50);
     } else if (deleting && charIdx === 0) {
       timeout = setTimeout(() => {
         setDeleting(false);

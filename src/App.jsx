@@ -9,6 +9,7 @@ import { HiOutlineDocumentArrowDown, HiOutlineArrowRightCircle } from "react-ico
 import TypewriterTitles from "./components/TypewriterTitles";
 import HorizontalCarousel from "./components/HorizontalCarousel";
 import HeroAnimation from "./components/HeroAnimation";
+import { Analytics } from "@vercel/analytics/react";
 
 /* Project Card */
 function ProjectCard({ title, company, year, image, slug, companyLogo }) {
@@ -123,7 +124,7 @@ function SiteNav() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-6 h-16 relative flex items-center justify-between">
         {/* Wordmark */}
-        <button onClick={handleWordmarkClick} className="text-base font-bold tracking-wide text-gray-900 hover:text-gray-600 transition-colors">
+        <button onClick={handleWordmarkClick} className="text-lg font-bold tracking-wide text-gray-900 hover:text-gray-600 transition-colors">
           ivvi
         </button>
 
@@ -214,7 +215,7 @@ function Home() {
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
             <h2 className="text-3xl md:text-4xl font-bold mb-10 tracking-tight text-center md:text-left">Hello!</h2>
             <p className="text-l md:text-4xl font-bold text-gray-900 leading-tight mb-6 text-center md:text-left">
-              I’m Charvi — a designer obsessed with{" "}
+              I’m Charvi – a designer obsessed with{" "}
               <span className="text-blue-700">bringing clarity</span> to complex systems.
             </p>
           </div>
@@ -225,7 +226,7 @@ function Home() {
               <p className="text-lg md:text-xl text-gray-900 font-medium max-w-4xl mx-auto mb-4 text-center md:text-left">
                 So far, I've loved turning{" "}
                 <span className="font-semibold text-blue-700">messy systems</span> and{" "}
-                <span className="font-semibold text-blue-700">vague ideas</span> into experiences that make sense — across{" "}
+                <span className="font-semibold text-blue-700">vague ideas</span> into experiences that make sense – across{" "}
                 <span className="font-semibold text-blue-700">gaming</span>,{" "}
                 <span className="font-semibold text-blue-700">private markets</span>,{" "}
                 <span className="font-semibold text-blue-700">service platforms</span>, and even the occasional hardware experiment
@@ -330,6 +331,7 @@ export default function App() {
           }
         />
       </Routes>
+      <Analytics />
     </div>
   );
 }
