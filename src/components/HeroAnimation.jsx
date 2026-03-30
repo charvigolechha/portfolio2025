@@ -79,7 +79,8 @@ export default function HeroAnimation() {
         const sinVal  = Math.sin(rad);
         const progress = (sinVal + 1) / 2; // normalised 0→1
 
-        const scale   = 0.25 + 1.6 * progress;
+        const baseSize = width * 0.08; // icon size relative to container
+        const scale   = (0.25 + 1.6 * progress) * (baseSize / 48);
         // fade to 0 in the back 20% of the orbit (disappear into screen)
         const opacity = progress < 0.2 ? 0 : progress;
 

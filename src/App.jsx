@@ -139,13 +139,13 @@ function SiteNav() {
           ivvi
         </button>
 
-        {/* Centre nav — absolutely centred so it's independent of wordmark/resume widths */}
-        <nav className="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
+        {/* Centre nav — hidden on mobile, absolutely centred on sm+ */}
+        <nav className="hidden sm:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 md:gap-10">
           {["work", "about", "contact"].map(id => (
             <button
               key={id}
               onClick={() => handleNavClick(id)}
-              className={`text-base font-semibold capitalize tracking-wide transition-colors ${
+              className={`text-sm md:text-base font-semibold capitalize tracking-wide transition-colors ${
                 isHome && activeSection === id
                   ? "text-black border-b-2 border-black pb-0.5"
                   : "text-gray-400 hover:text-gray-700"
