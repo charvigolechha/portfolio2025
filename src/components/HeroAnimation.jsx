@@ -101,7 +101,7 @@ export default function HeroAnimation() {
 
     // --- Hover: slow down / speed up ---
     const slowDown = () => { speedRef.current = 0.1; };
-    const speedUp  = () => { speedRef.current = 0.4; };
+    const speedUp  = () => { speedRef.current = 0.3; };
     container.addEventListener("mouseenter", slowDown);
     container.addEventListener("mouseleave", speedUp);
 

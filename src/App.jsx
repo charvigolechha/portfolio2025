@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import ProjectPage from "./pages/ProjectPage";
 import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import EzamCaseStudy from "./pages/EzamCaseStudy";
@@ -10,60 +10,71 @@ import TypewriterTitles from "./components/TypewriterTitles";
 import HorizontalCarousel from "./components/HorizontalCarousel";
 import HeroAnimation from "./components/HeroAnimation";
 import { Analytics } from "@vercel/analytics/react";
+import Button from "./components/Button";
 
 /* Project Card */
-function ProjectCard({ title, company, year, image, slug, companyLogo }) {
-  return (
-    <Link to={`/projects/${slug}`}>
-      <div className="project-card bg-white rounded-xl shadow-md mx-auto overflow-hidden w-full hover:shadow-lg transition">
-        <div className="project-inner-padding">
-          <div className="mb-3">
-            <h3 className="text-xl sm:text-2xl font-bold text-black text-left leading-snug">
-              {title}
-            </h3>
-            <hr className="hr-subtle my-3" />
-          </div>
+function ProjectCard({ title, company, year, image, slug, companyLogo, comingSoon }) {
+  const inner = (
+    <div className={`project-card bg-white rounded-xl shadow-md mx-auto overflow-hidden w-full transition ${comingSoon ? "cursor-default" : "hover:shadow-lg"}`}>
+      <div className="project-inner-padding">
+        <div className="mb-3">
+          <h3 className="text-xl sm:text-2xl font-bold text-black text-left leading-snug">
+            {title}
+          </h3>
+          <hr className="hr-subtle my-3" />
+        </div>
 
-          <div className="flex justify-between text-sm text-gray-800 mb-3">
-            <span className="flex items-center gap-2">
-              {companyLogo && (
-                <span className="w-5 h-5 rounded-full flex items-center justify-center overflow-hidden">
-                  <img
-                    src={companyLogo}
-                    alt={`${company} Logo`}
-                    className="w-full h-full object-cover"
-                  />
-                </span>
-              )}
-              {company}
-            </span>
-            <span>{year}</span>
-          </div>
+        <div className="flex justify-between text-sm text-gray-800 mb-3">
+          <span className="flex items-center gap-2">
+            {companyLogo && (
+              <span className="w-5 h-5 rounded-full flex items-center justify-center overflow-hidden">
+                <img
+                  src={companyLogo}
+                  alt={`${company} Logo`}
+                  className="w-full h-full object-cover"
+                />
+              </span>
+            )}
+            {company}
+          </span>
+          <span>{year}</span>
+        </div>
 
-          <div className="relative w-full rounded-lg overflow-hidden">
-            <div className="w-full bg-gray-300 rounded-md flex items-center justify-center">
-              {image ? (
-                <div className="w-full aspect-[16/9] rounded-md overflow-hidden relative">
-                  <img
-                    src={image}
-                    alt={title}
-                    className="w-full h-full object-cover block"
-                    draggable="false"
-                  />
-                  {/* Icon overlay */}
+        <div className="relative w-full rounded-lg overflow-hidden">
+          <div className="w-full bg-gray-300 rounded-md flex items-center justify-center">
+            {image ? (
+              <div className="w-full aspect-[16/9] rounded-md overflow-hidden relative">
+                <img
+                  src={image}
+                  alt={title}
+                  className="w-full h-full object-cover block"
+                  draggable="false"
+                />
+                {!comingSoon && (
                   <span className="absolute bottom-3 right-3 z-10 flex items-center justify-center">
                     <HiOutlineArrowRightCircle className="text-4xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" />
                   </span>
-                </div>
-              ) : (
-                <div className="w-full aspect-[16/9] bg-gray-400 rounded-md" />
-              )}
-            </div>
+                )}
+              </div>
+            ) : (
+              <div className="w-full aspect-[16/9] bg-gray-200 rounded-md flex items-center justify-center">
+                {comingSoon && (
+                  <span className="text-sm font-semibold text-gray-400 tracking-widest uppercase">Coming Soon</span>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
+
+  if (comingSoon) return (
+    <div onClick={() => toast("Still evolving, but I'd love to talk about it. Reach out anytime:)", { duration: 3000 })}>
+      {inner}
+    </div>
+  );
+  return <Link to={`/projects/${slug}`}>{inner}</Link>;
 }
 
 /* Home */
@@ -146,16 +157,15 @@ function SiteNav() {
         </nav>
 
         {/* Resume */}
-        <a
+        <Button
           href="/CharviGolechha_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleResumeClick}
-          className="flex items-center gap-2 bg-blue-700 text-white hover:bg-blue-600 font-semibold px-5 py-2.5 rounded-full text-base transition-colors"
         >
           <HiOutlineDocumentArrowDown className="text-base" />
           <span className="hidden sm:inline">Resume</span>
-        </a>
+        </Button>
       </div>
     </header>
   );
@@ -175,12 +185,17 @@ function Home() {
     <div className="relative">
       {/* Hero */}
       <section className="home relative flex flex-col items-center justify-center min-h-screen max-w-6xl px-4 mx-auto pt-16 pb-16">
-        <div className="w-full max-w-xl mb-4">
+        <div className="w-full max-w-xl mb-6">
           <HeroAnimation />
         </div>
-        <h1 className="text-5xl md:text-6xl font-bold text-center mb-4">Charvi Golechha</h1>
-        <p className="text-lg md:text-xl text-gray-800 text-center">
-          <TypewriterTitles />
+        <p className="text-base font-semibold tracking-widest text-gray-400 uppercase mb-6">
+          Charvi Golechha
+        </p>
+        <h1 className="text-2xl md:text-4xl font-semibold text-gray-800 text-center mb-8 leading-relaxed max-w-2xl">
+          I like understanding how things work.<br /> Even when they clearly don't.
+        </h1>
+        <p className="text-sm md:text-base text-gray-500 text-center tracking-wide">
+          Product Designer &nbsp;·&nbsp; <span className="text-gray-400">PlaySimple Games</span>
         </p>
         {/* Scroll indicator */}
         <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
@@ -203,6 +218,7 @@ function Home() {
               image={project.heroImage}
               slug={project.slug}
               companyLogo={project.companyLogo}
+              comingSoon={project.comingSoon}
             />
           ))}
         </div>
@@ -267,12 +283,9 @@ function Home() {
         <h3 className="text-2xl md:text-3xl font-bold mb-6">
           Write to me<span className="font-normal"> – worst case, I send moodboards.📩</span>
         </h3>
-        <a
-          href="mailto:golechhacharvi@gmail.com"
-          className="inline-block mt-2 px-5 py-2.5 rounded-full bg-blue-700 text-white text-base font-semibold transition-all duration-300 ease-in-out hover:bg-black mb-8"
-        >
+        <Button href="mailto:golechhacharvi@gmail.com" className="mt-2 mb-8">
           golechhacharvi@gmail.com
-        </a>
+        </Button>
       </section>
     </div>
   );

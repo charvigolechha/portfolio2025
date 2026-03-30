@@ -25,6 +25,15 @@ const projects = [
     heroImage: "/images/ezam/Hero-Ezam.png",
     companyLogo: "/images/ezam/Icon-Ezam.png",
   },
+  {
+    title: "Using Player Friction to Shape Retention in a New Puzzle Game",
+    company: "Playsimple Games",
+    year: "2026",
+    slug: "player-friction-retention",
+    heroImage: "/images/picmerge/Hero-Picmerge.png",
+    companyLogo: "/images/psg/Icon-PSG.png",
+    comingSoon: true,
+  },
 ];
 
 export default projects;
