@@ -185,14 +185,14 @@ function Home() {
     <div className="relative">
       {/* Hero */}
       <section className="home relative flex flex-col items-center justify-center min-h-screen max-w-6xl px-4 mx-auto pt-16 pb-16">
-        <div className="w-full max-w-xl mb-6">
+        <div className="w-full max-w-lg mb-6">
           <HeroAnimation />
         </div>
         <p className="text-base font-semibold tracking-widest text-gray-400 uppercase mb-6">
           Charvi Golechha
         </p>
-        <h1 className="text-2xl md:text-4xl font-semibold text-gray-800 text-center mb-8 leading-relaxed max-w-2xl">
-          I like understanding how things work.<br /> Even when they clearly don't.
+        <h1 className="text-2xl md:text-4xl font-semibold text-gray-800 text-center mb-8 leading-relaxed max-w-3xl">
+          Drawn to making sense of messy systems and turning them into products that work.
         </h1>
         <p className="text-sm md:text-base text-gray-500 text-center tracking-wide">
           Product Designer &nbsp;·&nbsp; <span className="text-gray-400">PlaySimple Games</span>
@@ -225,7 +225,7 @@ function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="about py-20 max-w-4xl mx-auto px-6 text-center mb-0">
+      <section id="about" className="about py-12 max-w-4xl mx-auto px-6 text-center mb-0 scroll-mt-16">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-20">
           {/* Left column: Hello + first line */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
@@ -238,9 +238,9 @@ function Home() {
           {/* Right column: What I Do & Beyond Work */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-10">
             <div>
-              <p className="uppercase text-s font-bold text-gray-400 tracking-widest mb-2 text-center md:text-left">What I Do</p>
+              <p className="uppercase text-base font-semibold text-gray-400 tracking-widest mb-2 text-center md:text-left">What I Do</p>
               <p className="text-lg md:text-xl text-gray-900 font-medium max-w-4xl mx-auto mb-4 text-center md:text-left">
-                So far, I've loved turning{" "}
+                So far, I’ve loved turning{" "}
                 <span className="font-semibold text-blue-700">messy systems</span> and{" "}
                 <span className="font-semibold text-blue-700">vague ideas</span> into experiences that make sense – across{" "}
                 <span className="font-semibold text-blue-700">gaming</span>,{" "}
@@ -250,7 +250,7 @@ function Home() {
               </p>
             </div>
             <div>
-              <p className="uppercase text-s font-bold text-gray-400 tracking-widest mb-2 text-center md:text-left">Beyond Work</p>
+              <p className="uppercase text-base font-semibold text-gray-400 tracking-widest mb-2 text-center md:text-left">Beyond Work</p>
               <p className="text-lg md:text-xl text-gray-900 font-medium max-w-4xl mx-auto text-center md:text-left">
                 Off-screen, I switch between{" "}
                 <span className="font-semibold text-blue-700">tennis</span>,{" "}
@@ -260,11 +260,9 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* My Life */}
-      <section className="my-life py-0 md:py-0 relative mt--80">
-        <div className="max-w-5xl mx-auto mb-20">
+        {/* Photo carousel — full width, secondary */}
+        <div className="mt-20 w-full">
           <HorizontalCarousel
             items={[
               { src: "/images/life1.jpg", caption: "Figma was closed for this one." },

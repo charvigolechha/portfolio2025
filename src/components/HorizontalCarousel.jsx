@@ -1,61 +1,88 @@
 import React, { useEffect, useRef, useState } from "react";
 
+const ITEM_RATIO = 0.6; // center item = 60% of container width
+
 export default function HorizontalCarousel({ items, interval = 5000 }) {
-  const [centerIdx, setCenterIdx] = useState(0);
+  const n = items.length;
+  const [current, setCurrent] = useState(0);
+  const [containerW, setContainerW] = useState(0);
+  const containerRef = useRef();
   const timeoutRef = useRef();
 
+  // Measure container width, update on resize
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ro = new ResizeObserver(([entry]) => {
+      setContainerW(entry.contentRect.width);
+    });
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  // Auto-advance
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
-      setCenterIdx((prev) => (prev + 1) % items.length);
+      setCurrent((prev) => (prev + 1) % n);
     }, interval);
     return () => clearTimeout(timeoutRef.current);
-  }, [centerIdx, items.length, interval]);
+  }, [current, n, interval]);
 
-  // Helper to get the correct image for each slot
-  const getImageIdx = (offset) => (centerIdx + offset + items.length) % items.length;
+  const itemW = containerW * ITEM_RATIO;
+  const offset = (containerW - itemW) / 2 - current * itemW;
 
   return (
-    <div className="w-full flex flex-col items-center">
-      {/* Heading and subheading should be in the parent (App.jsx), not here */}
-      <div className="h-8" /> {/* Adds gap between heading and images */}
-      <div className="flex flex-row items-center justify-center gap-2 md:gap-6"
-           style={{ transition: 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)' }}>
-        {/* Show 2 images left, center, 2 right */}
-        {[-2, -1, 0, 1, 2].map((offset) => {
-          const idx = getImageIdx(offset);
-          const isCenter = offset === 0;
-          return (
+    <div className="w-full flex flex-col items-center select-none">
+
+      {/* Overflow wrapper */}
+      <div ref={containerRef} className="w-full overflow-hidden">
+        <div
+          className="flex"
+          style={{
+            transform: `translateX(${offset}px)`,
+            transition: containerW ? "transform 0.45s cubic-bezier(0.34, 1.2, 0.64, 1)" : "none",
+          }}
+        >
+          {items.map((item, i) => (
             <div
-              key={idx}
-              className={`transition-all duration-500 ${
-                isCenter
-                  ? "scale-110 shadow-2xl z-10"
-                  : "scale-90 opacity-60 z-0"
-              } rounded-xl overflow-hidden bg-gray-200`}
+              key={i}
+              className="flex-shrink-0 px-2"
               style={{
-                width: isCenter ? 400 : 180,
-                height: isCenter ? 260 : 120,
-                marginLeft: offset === -2 ? 0 : -32,
-                marginRight: offset === 2 ? 0 : -32,
-                boxShadow: isCenter
-                  ? "0 8px 32px 0 rgba(0,0,0,0.18)"
-                  : "0 2px 8px 0 rgba(0,0,0,0.08)",
+                width: itemW,
+                opacity: i === current ? 1 : 0.45,
+                transition: "opacity 0.4s ease",
               }}
+              onClick={() => setCurrent(i)}
             >
               <img
-                src={items[idx].src}
-                alt={items[idx].caption || ""}
-                className="w-full h-full object-cover"
-                draggable="false"
+                src={item.src}
+                alt={item.caption || ""}
+                className="w-full aspect-[16/9] object-cover block rounded-lg cursor-pointer"
+                draggable={false}
               />
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
-      {/* Caption for center image */}
-      <div className="mt-8 text-center text-gray-700 text-base max-w-md min-h-[2.5rem]">
-        {items[centerIdx].caption}
+
+      {/* Caption */}
+      <p className="mt-3 text-sm text-gray-500 italic text-center px-4 min-h-[1.25rem]">
+        {items[current].caption}
+      </p>
+
+      {/* Dots */}
+      <div className="flex items-center gap-1.5 mt-3">
+        {items.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === current ? "w-4 bg-gray-400" : "w-1.5 bg-gray-300 hover:bg-gray-400"
+            }`}
+          />
+        ))}
       </div>
+
     </div>
   );
 }

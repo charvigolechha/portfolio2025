@@ -15,7 +15,7 @@ export default function HeroAnimation() {
   const ponytailRef   = useRef(null);
   const leftHandRef   = useRef(null);
   const rightHandRef  = useRef(null);
-  const speedRef      = useRef(0.4);   // degrees added per frame
+  const speedRef      = useRef(0.25);   // degrees added per frame
   const anglesRef     = useRef(OBJECTS.map(o => o.startAngle));
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function HeroAnimation() {
     // --- Ponytail idle sway ---
     gsap.to(ponytailRef.current, {
       rotation: 6,
-      duration: 1.8,
+      duration: 2.0,
       ease: "sine.inOut",
       yoyo: true,
       repeat: -1,
@@ -35,9 +35,9 @@ export default function HeroAnimation() {
     const typeHand = () => {
       gsap.to(leftHandRef.current, {
         x: Math.random() > 0.5 ? 3 : -5,
-        duration: 0.4 + Math.random() * 0.3,
+        duration: 0.8 + Math.random() * 0.5,
         ease: "power1.inOut",
-        delay: 0.1 + Math.random() * 0.4,
+        delay: 0.2 + Math.random() * 0.6,
         onComplete: typeHand,
       });
     };
@@ -47,16 +47,16 @@ export default function HeroAnimation() {
     const moveMouse = () => {
       gsap.to(rightHandRef.current, {
         y: Math.random() > 0.4 ? 5 : 0,
-        duration: 0.6 + Math.random() * 0.6,
+        duration: 1.2 + Math.random() * 0.8,
         ease: "power2.inOut",
-        delay: 0.2 + Math.random() * 0.5,
+        delay: 0.4 + Math.random() * 0.8,
         onComplete: moveMouse,
       });
     };
     moveMouse();
 
     // --- Orbit ticker ---
-    const tick = () => {
+    const tick = (time, deltaTime) => {
       const { width, height } = container.getBoundingClientRect();
 
       // ⚙️ Tune these to match your illustration:
@@ -69,7 +69,7 @@ export default function HeroAnimation() {
       const radiusY = height * 0.04;
 
       anglesRef.current = anglesRef.current.map((angle, i) => {
-        const newAngle = angle + speedRef.current;
+        const newAngle = angle + speedRef.current * (deltaTime / 16.667);
         const rad      = (newAngle * Math.PI) / 180;
 
         const x = centerX + radiusX * Math.cos(rad);
@@ -102,7 +102,7 @@ export default function HeroAnimation() {
 
     // --- Hover: slow down / speed up ---
     const slowDown = () => { speedRef.current = 0.1; };
-    const speedUp  = () => { speedRef.current = 0.3; };
+    const speedUp  = () => { speedRef.current = 0.25; };
     container.addEventListener("mouseenter", slowDown);
     container.addEventListener("mouseleave", speedUp);
 
