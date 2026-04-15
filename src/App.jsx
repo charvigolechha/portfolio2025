@@ -195,7 +195,7 @@ function Home() {
           Drawn to making sense of messy systems and turning them into products that work.
         </h1>
         <p className="text-sm md:text-base text-gray-500 text-center tracking-wide">
-          Product Designer &nbsp;·&nbsp; <span className="text-gray-400">PlaySimple Games</span>
+          UX Researcher + Designer &nbsp;·&nbsp; <span className="text-gray-400">PlaySimple Games</span>
         </p>
         {/* Scroll indicator */}
         <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
@@ -268,7 +268,7 @@ function Home() {
               { src: "/images/life1.jpg", caption: "Figma was closed for this one." },
               { src: "/images/life2.jpg", caption: "Sharing my work on inclusive game design at ServDes 2025." },
               { src: "/images/life3.jpg", caption: "Powered by adrenaline and bad jokes." },
-              { src: "/images/life4.jpg", caption: "Experiencing ProtoVillage with Titan" },
+              { src: "/images/life4.jpg", caption: "Experiencing ProtoVillage with Titan Co. Ltd." },
               { src: "/images/life5.jpg", caption: "Reset button, every time." },
             ]}
             interval={5000}

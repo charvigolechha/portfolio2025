@@ -3,10 +3,11 @@ import { gsap } from "gsap";
 
 const OBJECTS = [
   { src: "/illustrations/tennis.svg",  startAngle: 0   },
-  { src: "/illustrations/book.svg",    startAngle: 72  },
-  { src: "/illustrations/camera.svg",  startAngle: 144 },
-  { src: "/illustrations/skate.svg",   startAngle: 216 },
-  { src: "/illustrations/pallette.svg",startAngle: 288 },
+  { src: "/illustrations/book.svg",    startAngle: 60  },
+  { src: "/illustrations/camera.svg",  startAngle: 120 },
+  { src: "/illustrations/skate.svg",   startAngle: 180 },
+  { src: "/illustrations/pallette.svg",startAngle: 240 },
+  { src: "/illustrations/flow.svg",    startAngle: 300 },
 ];
 
 export default function HeroAnimation() {
