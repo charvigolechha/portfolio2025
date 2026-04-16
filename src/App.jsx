@@ -318,7 +318,7 @@ export default function App() {
   return (
     <div className="relative">
       <Toaster position="top-center" />
-      // <ScrollToTop />
+      <ScrollToTop />
       <SiteNav />
 
       <Routes>
