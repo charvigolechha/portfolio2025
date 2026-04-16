@@ -311,7 +311,6 @@ function ScrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [location.pathname]);
-  return null;
 }
 
 /* Routes */
@@ -319,7 +318,7 @@ export default function App() {
   return (
     <div className="relative">
       <Toaster position="top-center" />
-      <ScrollToTop />
+      // <ScrollToTop />
       <SiteNav />
 
       <Routes>
