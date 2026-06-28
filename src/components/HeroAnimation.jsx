@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 const OBJECTS = [
@@ -10,7 +10,27 @@ const OBJECTS = [
   { src: "/illustrations/flow.svg",    startAngle: 300 },
 ];
 
+const preloadAssets = () => {
+  const assetSrcs = [
+    "/illustrations/girl-back.png",
+    "/illustrations/ponytail.png",
+    "/illustrations/hand-left.png",
+    "/illustrations/hand-right.png",
+    ...OBJECTS.map(o => o.src),
+  ];
+
+  return Promise.allSettled(
+    assetSrcs.map(src => new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(src);
+      img.onerror = () => reject(new Error(`Failed to load ${src}`));
+      img.src = src;
+    }))
+  );
+};
+
 export default function HeroAnimation() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const containerRef  = useRef(null);
   const objectRefs    = useRef([]);
   const ponytailRef   = useRef(null);
@@ -20,6 +40,12 @@ export default function HeroAnimation() {
   const anglesRef     = useRef(OBJECTS.map(o => o.startAngle));
 
   useEffect(() => {
+    preloadAssets().finally(() => setIsLoaded(true));
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
     const container = containerRef.current;
 
     // --- Ponytail idle sway ---
@@ -101,6 +127,13 @@ export default function HeroAnimation() {
 
     gsap.ticker.add(tick);
 
+    // --- Fade in container after assets loaded ---
+    gsap.fromTo(
+      container,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.6, ease: "power2.out" }
+    );
+
     // --- Hover: slow down / speed up ---
     const slowDown = () => { speedRef.current = 0.1; };
     const speedUp  = () => { speedRef.current = 0.25; };
@@ -112,13 +145,14 @@ export default function HeroAnimation() {
       gsap.killTweensOf(ponytailRef.current);
       gsap.killTweensOf(leftHandRef.current);
       gsap.killTweensOf(rightHandRef.current);
+      gsap.killTweensOf(container);
       container.removeEventListener("mouseenter", slowDown);
       container.removeEventListener("mouseleave", speedUp);
     };
-  }, []);
+  }, [isLoaded]);
 
   return (
-    <div ref={containerRef} className="relative w-full select-none">
+    <div ref={containerRef} className="relative w-full select-none" style={{ opacity: isLoaded ? 1 : 0 }}>
 
       {/* Base layer — full illustration */}
       <img
