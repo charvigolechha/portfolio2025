@@ -192,7 +192,7 @@ function Home() {
           Charvi Golechha
         </p>
         <h1 className="text-2xl md:text-4xl font-semibold text-gray-800 text-center mb-8 leading-relaxed max-w-3xl">
-          Drawn to making sense of messy systems and turning them into products that work.
+          Designing with clarity, curiosity, and intent.
         </h1>
         <p className="text-sm md:text-base text-gray-500 text-center tracking-wide">
           UX Researcher + Designer &nbsp;·&nbsp; <span className="text-gray-400">PlaySimple Games</span>
