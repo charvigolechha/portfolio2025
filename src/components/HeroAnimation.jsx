@@ -1,36 +1,45 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
+// The still drawing. It shows on its own as soon as it arrives.
+// (index.html also preloads it so the download starts before any JavaScript runs.)
+const BASE_SRC = "/illustrations/girl-back.webp";
+
+// Small WebP versions (~6–9 KB each) of the original hand-drawn SVGs (~1 MB each).
 const OBJECTS = [
-  { src: "/illustrations/tennis.svg",  startAngle: 0   },
-  { src: "/illustrations/book.svg",    startAngle: 60  },
-  { src: "/illustrations/camera.svg",  startAngle: 120 },
-  { src: "/illustrations/skate.svg",   startAngle: 180 },
-  { src: "/illustrations/pallette.svg",startAngle: 240 },
-  { src: "/illustrations/flow.svg",    startAngle: 300 },
+  { src: "/illustrations/tennis.webp",   startAngle: 0   },
+  { src: "/illustrations/book.webp",     startAngle: 60  },
+  { src: "/illustrations/camera.webp",   startAngle: 120 },
+  { src: "/illustrations/skate.webp",    startAngle: 180 },
+  { src: "/illustrations/pallette.webp", startAngle: 240 },
+  { src: "/illustrations/flow.webp",     startAngle: 300 },
 ];
 
-const preloadAssets = () => {
-  const assetSrcs = [
-    "/illustrations/girl-back.png",
-    "/illustrations/ponytail.png",
-    "/illustrations/hand-left.png",
-    "/illustrations/hand-right.png",
-    ...OBJECTS.map(o => o.src),
-  ];
+// Everything that moves. These appear together, or not at all.
+const LAYER_SRCS = [
+  "/illustrations/ponytail.webp",
+  "/illustrations/hand-left.png",
+  "/illustrations/hand-right.png",
+  ...OBJECTS.map(o => o.src),
+];
 
-  return Promise.allSettled(
-    assetSrcs.map(src => new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(src);
-      img.onerror = () => reject(new Error(`Failed to load ${src}`));
-      img.src = src;
-    }))
-  );
-};
+// Download one image. Resolves when it has loaded, rejects if it fails.
+// (Handlers are attached BEFORE src is set, so even a cached image is caught.)
+const loadImage = (src) => new Promise((resolve, reject) => {
+  const img = new Image();
+  img.onload  = () => resolve(src);
+  img.onerror = () => reject(new Error(`Failed to load ${src}`));
+  img.src = src;
+});
+
+// Promise.all (not allSettled): if ANY layer fails, the whole thing rejects,
+// so we never show a half-built animation. Cached so it only runs once.
+let layersPromise = null;
+const loadLayers = () => (layersPromise ??= Promise.all(LAYER_SRCS.map(loadImage)));
 
 export default function HeroAnimation() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [baseState, setBaseState]       = useState("loading"); // "loading" | "ready" | "failed"
+  const [layersReady, setLayersReady]   = useState(false);
   const containerRef  = useRef(null);
   const objectRefs    = useRef([]);
   const ponytailRef   = useRef(null);
@@ -39,17 +48,34 @@ export default function HeroAnimation() {
   const speedRef      = useRef(0.25);   // degrees added per frame
   const anglesRef     = useRef(OBJECTS.map(o => o.startAngle));
 
+  // Moving parts only switch on once the drawing AND every layer are ready.
+  const animate = baseState === "ready" && layersReady;
+
   useEffect(() => {
-    preloadAssets().finally(() => setIsLoaded(true));
+    let cancelled = false;
+
+    // Load the drawing through a separate Image object. (Safer than <img onLoad>, which can
+    // be missed when the image is already cached from the preload in index.html.)
+    loadImage(BASE_SRC)
+      .then(() => { if (!cancelled) setBaseState("ready"); })
+      .catch(() => { if (!cancelled) setBaseState("failed"); });
+
+    loadLayers()
+      .then(() => { if (!cancelled) setLayersReady(true); })
+      .catch(() => { /* a layer failed: keep showing the still drawing */ });
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
-    if (!isLoaded) return;
+    if (!animate) return;
 
     const container = containerRef.current;
+    const ponytail  = ponytailRef.current;
+    const leftHand  = leftHandRef.current;
+    const rightHand = rightHandRef.current;
 
     // --- Ponytail idle sway ---
-    gsap.to(ponytailRef.current, {
+    gsap.to(ponytail, {
       rotation: 6,
       duration: 2.0,
       ease: "sine.inOut",
@@ -60,7 +86,7 @@ export default function HeroAnimation() {
 
     // --- Left hand: typing (subtle x shift) ---
     const typeHand = () => {
-      gsap.to(leftHandRef.current, {
+      gsap.to(leftHand, {
         x: Math.random() > 0.5 ? 3 : -5,
         duration: 0.8 + Math.random() * 0.5,
         ease: "power1.inOut",
@@ -72,7 +98,7 @@ export default function HeroAnimation() {
 
     // --- Right hand: mouse (subtle y drift) ---
     const moveMouse = () => {
-      gsap.to(rightHandRef.current, {
+      gsap.to(rightHand, {
         y: Math.random() > 0.4 ? 5 : 0,
         duration: 1.2 + Math.random() * 0.8,
         ease: "power2.inOut",
@@ -109,7 +135,8 @@ export default function HeroAnimation() {
         const baseSize = width * 0.08; // icon size relative to container
         const scale   = (0.25 + 1.6 * progress) * (baseSize / 48);
         // fade to 0 in the back 20% of the orbit (disappear into screen)
-        const opacity = progress < 0.2 ? 0 : progress;
+        // × fadeIn.value so the objects fade in with the other layers
+        const opacity = (progress < 0.2 ? 0 : progress) * fadeIn.value;
 
         gsap.set(objectRefs.current[i], {
           x,
@@ -125,14 +152,11 @@ export default function HeroAnimation() {
       });
     };
 
-    gsap.ticker.add(tick);
+    // --- Fade the orbit in over 0.6s (ponytail + hands fade via CSS, same timing) ---
+    const fadeIn = { value: 0 };
+    gsap.to(fadeIn, { value: 1, duration: 0.6, ease: "power2.out" });
 
-    // --- Fade in container after assets loaded ---
-    gsap.fromTo(
-      container,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.6, ease: "power2.out" }
-    );
+    gsap.ticker.add(tick);
 
     // --- Hover: slow down / speed up ---
     const slowDown = () => { speedRef.current = 0.1; };
@@ -142,24 +166,44 @@ export default function HeroAnimation() {
 
     return () => {
       gsap.ticker.remove(tick);
-      gsap.killTweensOf(ponytailRef.current);
-      gsap.killTweensOf(leftHandRef.current);
-      gsap.killTweensOf(rightHandRef.current);
-      gsap.killTweensOf(container);
+      gsap.killTweensOf(ponytail);
+      gsap.killTweensOf(leftHand);
+      gsap.killTweensOf(rightHand);
+      gsap.killTweensOf(fadeIn);
       container.removeEventListener("mouseenter", slowDown);
       container.removeEventListener("mouseleave", speedUp);
     };
-  }, [isLoaded]);
+  }, [animate]);
+
+  // Ponytail + hands: hidden until everything is ready, then fade in together.
+  const layerStyle = { opacity: animate ? 1 : 0, transition: "opacity 0.6s ease-out" };
 
   return (
-    <div ref={containerRef} className="relative w-full select-none" style={{ opacity: isLoaded ? 1 : 0 }}>
+    // aspectRatio reserves the drawing's space up front, so nothing jumps while it loads.
+    <div ref={containerRef} className="relative w-full select-none" style={{ aspectRatio: "2000 / 1126" }}>
 
-      {/* Base layer — full illustration */}
+      {/* Placeholder — a soft grey shape while the drawing downloads */}
+      {/* (outer div fades out; inner div pulses — animate-pulse controls opacity itself, so they can't share one div) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{ opacity: baseState === "loading" ? 1 : 0, transition: "opacity 0.4s ease-out" }}
+      >
+        <div className="w-full h-full rounded-2xl bg-gray-100 animate-pulse" />
+      </div>
+
+      {/* Base layer — full illustration. Works on its own as the fallback. */}
       <img
-        src="/illustrations/girl-back.png"
-        alt="Charvi illustration"
-        className="w-full h-auto block"
-        style={{ position: "relative", zIndex: 5 }}
+        src={BASE_SRC}
+        alt="Illustration of Charvi at her desk"
+        fetchPriority="high"
+        className="w-full h-full block object-contain"
+        style={{
+          position: "relative",
+          zIndex: 5,
+          opacity: baseState === "ready" ? 1 : 0,
+          transition: "opacity 0.5s ease-out",
+        }}
         draggable={false}
       />
 
@@ -167,10 +211,10 @@ export default function HeroAnimation() {
       {/* ⚙️ Adjust top/left/width to match your illustration */}
       <img
         ref={ponytailRef}
-        src="/illustrations/ponytail.png"
+        src="/illustrations/ponytail.webp"
         alt=""
         className="absolute pointer-events-none"
-        style={{ top: "30%", left: "44.5%", width: "11%", zIndex: 15 }}
+        style={{ top: "30%", left: "44.5%", width: "11%", zIndex: 15, ...layerStyle }}
         draggable={false}
       />
 
@@ -181,7 +225,7 @@ export default function HeroAnimation() {
         src="/illustrations/hand-left.png"
         alt=""
         className="absolute pointer-events-none"
-        style={{ top: "75%", left: "25%", width: "6.6%", zIndex: 3 }}
+        style={{ top: "75%", left: "25%", width: "6.6%", zIndex: 3, ...layerStyle }}
         draggable={false}
       />
 
@@ -192,11 +236,12 @@ export default function HeroAnimation() {
         src="/illustrations/hand-right.png"
         alt=""
         className="absolute pointer-events-none"
-        style={{ top: "76%", left: "71%", width: "4.5%", zIndex: 3 }}
+        style={{ top: "76%", left: "71%", width: "4.5%", zIndex: 3, ...layerStyle }}
         draggable={false}
       />
 
       {/* Orbiting objects — start at top-left, GSAP moves them */}
+      {/* objectFit "contain" keeps each drawing's shape inside its 48×48 box (like the old SVGs did) */}
       {OBJECTS.map((obj, i) => (
         <img
           key={obj.src}
@@ -204,7 +249,7 @@ export default function HeroAnimation() {
           src={obj.src}
           alt=""
           className="absolute pointer-events-none"
-          style={{ top: 0, left: 0, width: 48, height: 48, opacity: 0 }}
+          style={{ top: 0, left: 0, width: 48, height: 48, objectFit: "contain", opacity: 0 }}
           draggable={false}
         />
       ))}

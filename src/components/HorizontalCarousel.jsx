@@ -56,6 +56,8 @@ export default function HorizontalCarousel({ items, interval = 5000 }) {
               <img
                 src={item.src}
                 alt={item.caption || ""}
+                loading="lazy"
+                decoding="async"
                 className="w-full aspect-[16/9] object-cover block rounded-lg cursor-pointer"
                 draggable={false}
               />

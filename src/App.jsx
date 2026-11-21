@@ -32,6 +32,7 @@ function ProjectCard({ title, company, year, image, slug, companyLogo, comingSoo
                 <img
                   src={companyLogo}
                   alt={`${company} Logo`}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </span>
@@ -48,6 +49,8 @@ function ProjectCard({ title, company, year, image, slug, companyLogo, comingSoo
                 <img
                   src={image}
                   alt={title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover block"
                   draggable="false"
                 />
@@ -216,7 +219,7 @@ function Home() {
               title={project.title}
               company={project.company}
               year={project.year}
-              image={project.heroImage}
+              image={project.cardImage || project.heroImage}
               slug={project.slug}
               companyLogo={project.companyLogo}
               comingSoon={project.comingSoon}

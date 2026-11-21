@@ -1,5 +1,6 @@
 // Simple projects data store. Add or edit projects here.
-// Place real images in public/images/ and reference them via the image field.
+// heroImage = full-size header for the case study page.
+// cardImage = small WebP copy (1280px wide) used on the home page cards, so the home page loads fast.
 const projects = [
   {
     title: "Retention Without Pressure: Designing a Puzzle Game for Relaxed Players",
@@ -7,6 +8,7 @@ const projects = [
     year: "2026",
     slug: "picmerge",
     heroImage: "/images/picmerge/Hero-Picmerge.png",
+    cardImage: "/images/cards/picmerge.webp", // smaller copy for the home page card
     companyLogo: "/images/psg/Icon-PSG.png",
   },
   {
@@ -15,6 +17,7 @@ const projects = [
     year: "2025",
     slug: "agentic-ai-private-equity",
     heroImage: "/images/ip/Hero-IP.png",
+    cardImage: "/images/cards/ip.webp", // smaller copy for the home page card
     companyLogo: "/images/ip/Icon-IP.png",
   },
   {
@@ -23,6 +26,7 @@ const projects = [
     year: "2025",
     slug: "puzzle-progression",
     heroImage: "/images/psg/Hero-PSG.png",
+    cardImage: "/images/cards/psg.webp", // smaller copy for the home page card
     companyLogo: "/images/psg/Icon-PSG.png",
   },
   {
@@ -31,6 +35,7 @@ const projects = [
     year: "2024",
     slug: "ezam",
     heroImage: "/images/ezam/Hero-Ezam.png",
+    cardImage: "/images/cards/ezam.webp", // smaller copy for the home page card
     companyLogo: "/images/ezam/Icon-Ezam.png",
   },
 ];
