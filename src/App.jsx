@@ -1,10 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route, Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
-import ProjectPage from "./pages/ProjectPage";
-import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
-import EzamCaseStudy from "./pages/EzamCaseStudy";
-import PicMergeCaseStudy from "./pages/PicMergeCaseStudy";
+
+// Case study pages are loaded on demand: each becomes its own small file that the
+// browser only downloads when someone opens that page. The home page stays light.
+const pageLoaders = {
+  "puzzle-progression":        () => import("./pages/ProjectPage"),
+  "agentic-ai-private-equity": () => import("./pages/AgenticAIProjectPage"),
+  "ezam":                      () => import("./pages/EzamCaseStudy"),
+  "picmerge":                  () => import("./pages/PicMergeCaseStudy"),
+};
+const ProjectPage          = lazy(pageLoaders["puzzle-progression"]);
+const AgenticAIProjectPage = lazy(pageLoaders["agentic-ai-private-equity"]);
+const EzamCaseStudy        = lazy(pageLoaders["ezam"]);
+const PicMergeCaseStudy    = lazy(pageLoaders["picmerge"]);
+
+// Start downloading a case study's code early (e.g. when the card is hovered),
+// so it usually opens instantly. Calling import() twice is safe: the browser reuses it.
+const prefetchPage = (slug) => (pageLoaders[slug] ?? pageLoaders["puzzle-progression"])();
 import projects from "./data/projects";
 import { HiOutlineDocumentArrowDown, HiOutlineArrowRightCircle } from "react-icons/hi2";
 import TypewriterTitles from "./components/TypewriterTitles";
@@ -78,7 +91,13 @@ function ProjectCard({ title, company, year, image, slug, companyLogo, comingSoo
       {inner}
     </div>
   );
-  return <Link to={`/projects/${slug}`}>{inner}</Link>;
+  // onMouseEnter / onFocus / onTouchStart: start fetching the page's code a moment before the click
+  const prefetch = () => prefetchPage(slug);
+  return (
+    <Link to={`/projects/${slug}`} onMouseEnter={prefetch} onFocus={prefetch} onTouchStart={prefetch}>
+      {inner}
+    </Link>
+  );
 }
 
 /* Home */
@@ -330,7 +349,17 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<><Home /><SiteFooter /></>} />
-        <Route path="/projects/:slug" element={<><ProjectRouteHandler /><SiteFooter /></>} />
+        <Route
+          path="/projects/:slug"
+          element={
+            // While a case study's code downloads, show an empty full-height space
+            // (footer included inside, so it doesn't flash at the top of the page).
+            <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
+              <ProjectRouteHandler />
+              <SiteFooter />
+            </Suspense>
+          }
+        />
         <Route
           path="*"
           element={
