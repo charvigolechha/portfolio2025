@@ -4,6 +4,7 @@ import { Toaster, toast } from "react-hot-toast";
 import ProjectPage from "./pages/ProjectPage";
 import AgenticAIProjectPage from "./pages/AgenticAIProjectPage";
 import EzamCaseStudy from "./pages/EzamCaseStudy";
+import PicMergeCaseStudy from "./pages/PicMergeCaseStudy";
 import projects from "./data/projects";
 import { HiOutlineDocumentArrowDown, HiOutlineArrowRightCircle } from "react-icons/hi2";
 import TypewriterTitles from "./components/TypewriterTitles";
@@ -43,7 +44,7 @@ function ProjectCard({ title, company, year, image, slug, companyLogo, comingSoo
         <div className="relative w-full rounded-lg overflow-hidden">
           <div className="w-full bg-gray-300 rounded-md flex items-center justify-center">
             {image ? (
-              <div className="w-full aspect-[16/9] rounded-md overflow-hidden relative">
+              <div className="w-full aspect-video rounded-md overflow-hidden relative">
                 <img
                   src={image}
                   alt={title}
@@ -57,7 +58,7 @@ function ProjectCard({ title, company, year, image, slug, companyLogo, comingSoo
                 )}
               </div>
             ) : (
-              <div className="w-full aspect-[16/9] bg-gray-200 rounded-md flex items-center justify-center">
+              <div className="w-full aspect-video bg-gray-200 rounded-md flex items-center justify-center">
                 {comingSoon && (
                   <span className="text-sm font-semibold text-gray-400 tracking-widest uppercase">Coming Soon</span>
                 )}
@@ -297,6 +298,9 @@ function ProjectRouteHandler() {
   }
   if (slug === "ezam") {
     return <EzamCaseStudy />;
+  }
+  if (slug === "picmerge") {
+    return <PicMergeCaseStudy />;
   }
   // Default: puzzle project
   return <ProjectPage />;

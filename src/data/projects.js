@@ -2,11 +2,11 @@
 // Place real images in public/images/ and reference them via the image field.
 const projects = [
   {
-    title: "Driving Player Progression in Casual Puzzle Games",
+    title: "Retention Without Pressure: Designing a Puzzle Game for Relaxed Players",
     company: "Playsimple Games",
-    year: "2025",
-    slug: "puzzle-progression",
-    heroImage: "/images/psg/Hero-PSG.png",
+    year: "2026",
+    slug: "picmerge",
+    heroImage: "/images/picmerge/Hero-Picmerge.png",
     companyLogo: "/images/psg/Icon-PSG.png",
   },
   {
@@ -18,21 +18,20 @@ const projects = [
     companyLogo: "/images/ip/Icon-IP.png",
   },
   {
+    title: "Driving Player Progression in Casual Puzzle Games",
+    company: "Playsimple Games",
+    year: "2025",
+    slug: "puzzle-progression",
+    heroImage: "/images/psg/Hero-PSG.png",
+    companyLogo: "/images/psg/Icon-PSG.png",
+  },
+  {
     title: "Building Competitive Play Beyond Visual Dependence",
     company: "Titan's Design Impact Movement",
     year: "2024",
     slug: "ezam",
     heroImage: "/images/ezam/Hero-Ezam.png",
     companyLogo: "/images/ezam/Icon-Ezam.png",
-  },
-  {
-    title: "Using Player Friction to Shape Retention in a New Puzzle Game",
-    company: "Playsimple Games",
-    year: "2026",
-    slug: "player-friction-retention",
-    heroImage: "/images/picmerge/Hero-Picmerge.png",
-    companyLogo: "/images/psg/Icon-PSG.png",
-    comingSoon: true,
   },
 ];
 

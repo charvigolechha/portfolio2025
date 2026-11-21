@@ -33,7 +33,7 @@ export default function ProjectPage() {
             </span>
             <span className="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
               <MdGroups className="text-base align-middle" />
-              UX, Product, Game Design, Analysts, UI, Developers
+              UX, Product, Game Design, Analysts, Developers
             </span>
           </div>
           <div className="w-full">
