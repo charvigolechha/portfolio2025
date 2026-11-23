@@ -1,316 +1,17 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
-import { Routes, Route, Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import { Toaster, toast } from "react-hot-toast";
+import React, { Suspense, lazy, useEffect } from "react";
+import { Routes, Route, Link, useParams, useLocation } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
+import { pageLoaders } from "./pageLoaders";
+import HomeV2 from "./pages/HomeV2";
+import { SiteStyles, SiteHeader, SiteFooter } from "./components/site/SiteChrome";
+// The previous home page (v1) is kept, unused, in ./legacy/HomeV1.jsx
 
-// Case study pages are loaded on demand: each becomes its own small file that the
-// browser only downloads when someone opens that page. The home page stays light.
-const pageLoaders = {
-  "puzzle-progression":        () => import("./pages/ProjectPage"),
-  "agentic-ai-private-equity": () => import("./pages/AgenticAIProjectPage"),
-  "ezam":                      () => import("./pages/EzamCaseStudy"),
-  "picmerge":                  () => import("./pages/PicMergeCaseStudy"),
-};
+// Case study pages are loaded on demand (see pageLoaders.js).
 const ProjectPage          = lazy(pageLoaders["puzzle-progression"]);
 const AgenticAIProjectPage = lazy(pageLoaders["agentic-ai-private-equity"]);
 const EzamCaseStudy        = lazy(pageLoaders["ezam"]);
 const PicMergeCaseStudy    = lazy(pageLoaders["picmerge"]);
-
-// Start downloading a case study's code early (e.g. when the card is hovered),
-// so it usually opens instantly. Calling import() twice is safe: the browser reuses it.
-const prefetchPage = (slug) => (pageLoaders[slug] ?? pageLoaders["puzzle-progression"])();
-import projects from "./data/projects";
-import { HiOutlineDocumentArrowDown, HiOutlineArrowRightCircle } from "react-icons/hi2";
-import TypewriterTitles from "./components/TypewriterTitles";
-import HorizontalCarousel from "./components/HorizontalCarousel";
-import HeroAnimation from "./components/HeroAnimation";
-import { Analytics } from "@vercel/analytics/react";
-import Button from "./components/Button";
-
-/* Project Card */
-function ProjectCard({ title, company, year, image, slug, companyLogo, comingSoon }) {
-  const inner = (
-    <div className={`project-card bg-white rounded-xl shadow-md mx-auto overflow-hidden w-full transition ${comingSoon ? "cursor-default" : "hover:shadow-lg"}`}>
-      <div className="project-inner-padding">
-        <div className="mb-3">
-          <h3 className="text-xl sm:text-2xl font-bold text-black text-left leading-snug">
-            {title}
-          </h3>
-          <hr className="hr-subtle my-3" />
-        </div>
-
-        <div className="flex justify-between text-sm text-gray-800 mb-3">
-          <span className="flex items-center gap-2">
-            {companyLogo && (
-              <span className="w-5 h-5 rounded-full flex items-center justify-center overflow-hidden">
-                <img
-                  src={companyLogo}
-                  alt={`${company} Logo`}
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-              </span>
-            )}
-            {company}
-          </span>
-          <span>{year}</span>
-        </div>
-
-        <div className="relative w-full rounded-lg overflow-hidden">
-          <div className="w-full bg-gray-300 rounded-md flex items-center justify-center">
-            {image ? (
-              <div className="w-full aspect-video rounded-md overflow-hidden relative">
-                <img
-                  src={image}
-                  alt={title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover block"
-                  draggable="false"
-                />
-                {!comingSoon && (
-                  <span className="absolute bottom-3 right-3 z-10 flex items-center justify-center">
-                    <HiOutlineArrowRightCircle className="text-4xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]" />
-                  </span>
-                )}
-              </div>
-            ) : (
-              <div className="w-full aspect-video bg-gray-200 rounded-md flex items-center justify-center">
-                {comingSoon && (
-                  <span className="text-sm font-semibold text-gray-400 tracking-widest uppercase">Coming Soon</span>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  if (comingSoon) return (
-    <div onClick={() => toast("Still evolving, but I'd love to talk about it. Reach out anytime:)", { duration: 3000 })}>
-      {inner}
-    </div>
-  );
-  // onMouseEnter / onFocus / onTouchStart: start fetching the page's code a moment before the click
-  const prefetch = () => prefetchPage(slug);
-  return (
-    <Link to={`/projects/${slug}`} onMouseEnter={prefetch} onFocus={prefetch} onTouchStart={prefetch}>
-      {inner}
-    </Link>
-  );
-}
-
-/* Home */
-/* Permanent site nav */
-function SiteNav() {
-  const location = useLocation();
-  const navigate  = useNavigate();
-  const isHome    = location.pathname === "/";
-  const [activeSection, setActiveSection] = useState("");
-
-  useEffect(() => {
-    if (!isHome) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            setActiveSection(e.target.id);
-          } else if (e.target.id === "work" && e.boundingClientRect.top > 0) {
-            // Work section is below viewport — user scrolled back to hero
-            setActiveSection("");
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-    ["work", "about", "contact"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, [isHome]);
-
-  const handleNavClick = (id) => {
-    if (isHome) {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    } else {
-      navigate("/");
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 150);
-    }
-  };
-
-  const handleResumeClick = () => {
-    const a = document.createElement("a");
-    a.href = "/CharviGolechha_Resume.pdf";
-    a.download = "CharviGolechha_Resume.pdf";
-    a.click();
-  };
-
-  const handleWordmarkClick = () => {
-    if (isHome) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      navigate("/");
-    }
-  };
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-6xl mx-auto px-6 h-16 relative flex items-center justify-between">
-        {/* Wordmark */}
-        <button onClick={handleWordmarkClick} className="text-lg font-bold tracking-wide text-gray-900 hover:text-gray-600 transition-colors">
-          ivvi
-        </button>
-
-        {/* Centre nav — hidden on mobile, absolutely centred on sm+ */}
-        <nav className="hidden sm:flex absolute left-1/2 -translate-x-1/2 items-center gap-6 md:gap-10">
-          {["work", "about", "contact"].map(id => (
-            <button
-              key={id}
-              onClick={() => handleNavClick(id)}
-              className={`text-sm md:text-base font-semibold capitalize tracking-wide transition-colors ${
-                isHome && activeSection === id
-                  ? "text-black border-b-2 border-black pb-0.5"
-                  : "text-gray-400 hover:text-gray-700"
-              }`}
-            >
-              {id}
-            </button>
-          ))}
-        </nav>
-
-        {/* Resume */}
-        <Button
-          href="/CharviGolechha_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleResumeClick}
-        >
-          <HiOutlineDocumentArrowDown className="text-base" />
-          <span className="hidden sm:inline">Resume</span>
-        </Button>
-      </div>
-    </header>
-  );
-}
-
-
-function Home() {
-  const [showChevron, setShowChevron] = useState(true);
-
-  useEffect(() => {
-    const handler = () => setShowChevron(window.scrollY < 80);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-
-  return (
-    <div className="relative">
-      {/* Hero */}
-      <section className="home relative flex flex-col items-center justify-center min-h-screen max-w-6xl px-4 mx-auto pt-16 pb-16">
-        <div className="w-full max-w-lg mb-6">
-          <HeroAnimation />
-        </div>
-        <p className="text-base font-semibold tracking-widest text-gray-400 uppercase mb-6">
-          Charvi Golechha
-        </p>
-        <h1 className="text-2xl md:text-4xl font-semibold text-gray-800 text-center mb-8 leading-relaxed max-w-3xl">
-          Designing with clarity, curiosity, and intent.
-        </h1>
-        <p className="text-sm md:text-base text-gray-500 text-center tracking-wide">
-          UX Researcher + Designer &nbsp;·&nbsp; <span className="text-gray-400">PlaySimple Games</span>
-        </p>
-        {/* Scroll indicator */}
-        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${showChevron ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
-            <path d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-      </section>
-
-      {/* My Work */}
-      <section id="work" className="my-work py-20 max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-left">Work</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              title={project.title}
-              company={project.company}
-              year={project.year}
-              image={project.cardImage || project.heroImage}
-              slug={project.slug}
-              companyLogo={project.companyLogo}
-              comingSoon={project.comingSoon}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="about py-12 max-w-4xl mx-auto px-6 text-center mb-0 scroll-mt-16">
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-12 md:gap-20">
-          {/* Left column: Hello + first line */}
-          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
-            <h2 className="text-3xl md:text-4xl font-bold mb-10 tracking-tight text-center md:text-left">Hello!</h2>
-            <p className="text-l md:text-4xl font-bold text-gray-900 leading-tight mb-6 text-center md:text-left">
-              I’m Charvi – a designer obsessed with{" "}
-              <span className="text-blue-700">bringing clarity</span> to complex systems.
-            </p>
-          </div>
-          {/* Right column: What I Do & Beyond Work */}
-          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-10">
-            <div>
-              <p className="uppercase text-base font-semibold text-gray-400 tracking-widest mb-2 text-center md:text-left">What I Do</p>
-              <p className="text-lg md:text-xl text-gray-900 font-medium max-w-4xl mx-auto mb-4 text-center md:text-left">
-                So far, I’ve loved turning{" "}
-                <span className="font-semibold text-blue-700">messy systems</span> and{" "}
-                <span className="font-semibold text-blue-700">vague ideas</span> into experiences that make sense – across{" "}
-                <span className="font-semibold text-blue-700">gaming</span>,{" "}
-                <span className="font-semibold text-blue-700">private markets</span>,{" "}
-                <span className="font-semibold text-blue-700">service platforms</span>, and even the occasional hardware experiment
-                <span className="italic text-gray-700"> (yes, including a terracotta air cooler)</span>.
-              </p>
-            </div>
-            <div>
-              <p className="uppercase text-base font-semibold text-gray-400 tracking-widest mb-2 text-center md:text-left">Beyond Work</p>
-              <p className="text-lg md:text-xl text-gray-900 font-medium max-w-4xl mx-auto text-center md:text-left">
-                Off-screen, I switch between{" "}
-                <span className="font-semibold text-blue-700">tennis</span>,{" "}
-                <span className="font-semibold text-blue-700">painting</span>, and whatever{" "}
-                <span className="font-semibold text-blue-700">new hobby</span> I decide to obsess over that month.{" "}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Photo carousel — full width, secondary */}
-        <div className="mt-20 w-full">
-          <HorizontalCarousel
-            items={[
-              { src: "/images/life1.jpg", caption: "Figma was closed for this one." },
-              { src: "/images/life2.jpg", caption: "Sharing my work on inclusive game design at ServDes 2025." },
-              { src: "/images/life3.jpg", caption: "Powered by adrenaline and bad jokes." },
-              { src: "/images/life4.jpg", caption: "Experiencing ProtoVillage with Titan Co. Ltd." },
-              { src: "/images/life5.jpg", caption: "Reset button, every time." },
-            ]}
-            interval={5000}
-          />
-        </div>
-      </section>
-
-      {/* Closing Section */}
-      <section id="contact" className="max-w-4xl mx-auto px-6 py-16 text-center">
-        <h3 className="text-2xl md:text-3xl font-bold mb-6">
-          Write to me<span className="font-normal"> – worst case, I send moodboards.📩</span>
-        </h3>
-        <Button href="mailto:golechhacharvi@gmail.com" className="mt-2 mb-8">
-          golechhacharvi@gmail.com
-        </Button>
-      </section>
-    </div>
-  );
-}
 
 function ProjectRouteHandler() {
   const { slug } = useParams();
@@ -328,27 +29,41 @@ function ProjectRouteHandler() {
   return <ProjectPage />;
 }
 
-/* ScrollToTop on route change */
-function ScrollToTop() {
-  const location = useLocation();
+/* Scroll on navigation: to a section if the URL has one (e.g. /#work), else to the top */
+function ScrollManager() {
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    // Only scroll to top on route change if not on home page
-    if (location.pathname !== "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    // "instant": arriving on a page should jump straight into place, even where
+    // the page itself uses smooth scrolling for in-page links.
+    if (!hash) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      return;
     }
-  }, [location.pathname]);
+    // The section may not exist yet (the page is still loading), so try for up to a second.
+    let tries = 0;
+    let timer;
+    const go = () => {
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (el) el.scrollIntoView({ behavior: "instant" });
+      else if (tries++ < 20) timer = setTimeout(go, 50);
+    };
+    go();
+    return () => clearTimeout(timer);
+  }, [pathname, hash]);
+  return null;
 }
 
 /* Routes */
 export default function App() {
   return (
     <div className="relative">
+      <SiteStyles />
       <Toaster position="top-center" />
-      <ScrollToTop />
-      <SiteNav />
+      <ScrollManager />
+      <SiteHeader />
 
       <Routes>
-        <Route path="/" element={<><Home /><SiteFooter /></>} />
+        <Route path="/" element={<><HomeV2 /><SiteFooter showSocial={false} bordered={false} /></>} />
         <Route
           path="/projects/:slug"
           element={
@@ -364,7 +79,7 @@ export default function App() {
           path="*"
           element={
             <>
-              <div className="max-w-4xl mx-auto py-20 px-4">
+              <div className="max-w-4xl mx-auto pt-32 pb-20 px-4">
                 <h2 className="text-2xl font-bold mb-4">Page not found</h2>
                 <p>
                   <Link to="/" className="text-blue-600 underline">
@@ -379,32 +94,5 @@ export default function App() {
       </Routes>
       <Analytics />
     </div>
-  );
-}
-
-function SiteFooter() {
-  return (
-    <footer className="text-center py-12 border-t border-gray-300">
-      <p className="mb-2">© 2025 Charvi Golechha • Designed & coded with care ♥︎</p>
-      <p className="flex justify-center gap-4 flex-wrap">
-        <a
-          href="https://www.linkedin.com/in/charvigolechha/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-800 hover:text-gray-600"
-        >
-          LinkedIn
-        </a>
-        •
-        <a
-          href="https://behance.net/charvigolechha"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-800 hover:text-gray-600"
-        >
-          Behance
-        </a>
-      </p>
-    </footer>
   );
 }
