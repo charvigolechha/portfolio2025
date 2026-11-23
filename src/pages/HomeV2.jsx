@@ -63,7 +63,7 @@ const PROJECTS = [
   },
   {
     slug: "ezam",
-    domain: "Physical game · competition project",
+    domain: "Competition project",
     name: "Ezam",
     title: "Competitive play beyond visual dependence",
     org: "Titan's Design Impact Movement",
@@ -212,7 +212,7 @@ export default function HomeV2() {
                 question needs, and stay for the numbers after launch.
               </p>
               <p className="mt-4 text-[var(--muted)] leading-relaxed">
-                Off-screen it's tennis, painting, and whatever hobby I'm obsessed with this month. Once, a terracotta air cooler.
+                Off-screen it's tennis, painting, and whatever hobby I'm obsessed with this month.
               </p>
               <ul className="mt-6 space-y-1.5 text-sm">
                 {EXPERIENCE.map((e) => (
